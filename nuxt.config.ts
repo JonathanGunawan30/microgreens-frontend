@@ -13,11 +13,12 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      apiUserBaseUrl: process.env.NUXT_USER_API_BASE_URL,
-      apiOrderBaseUrl: process.env.NUXT_ORDER_API_BASE_URL,
-      apiProductBaseUrl: process.env.NUXT_PRODUCT_API_BASE_URL,
-      apiPaymentBaseUrl: process.env.NUXT_PAYMENT_API_BASE_URL,
-      apiNotificationBaseUrl: process.env.NUXT_NOTIFICATION_API_BASE_URL,
+      apiUserBaseUrl: process.env.NUXT_PUBLIC_USER_API_BASE_URL,
+      apiProductBaseUrl: process.env.NUXT_PUBLIC_PRODUCT_API_BASE_URL,
+      apiOrderBaseUrl: process.env.NUXT_PUBLIC_ORDER_API_BASE_URL,
+      apiPaymentBaseUrl: process.env.NUXT_PUBLIC_PAYMENT_API_BASE_URL,
+      apiNotificationBaseUrl: process.env.NUXT_PUBLIC_NOTIFICATION_API_BASE_URL,
+      midtransClientKey: process.env.NUXT_PUBLIC_MIDTRANS_CLIENT_KEY,
     }
   },
 
@@ -63,11 +64,6 @@ export default defineNuxtConfig({
         { rel: 'stylesheet', href: '/libs/swiper/swiper-bundle.min.css' },
         { rel: 'stylesheet', href: '/libs/simplebar/dist/simplebar.min.css' }
       ],
-      script: [
-        {
-          src: "https://app.sandbox.midtrans.com/snap/snap.js", 'data-client-key': process.env.MIDTRANS_CLIENT_KEY,
-        }
-      ]
     },
   }
 })
