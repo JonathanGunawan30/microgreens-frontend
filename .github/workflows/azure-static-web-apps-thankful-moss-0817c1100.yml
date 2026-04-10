@@ -46,6 +46,13 @@ jobs:
           app_build_command: "npm install && npm run generate"
           github_id_token: ${{ steps.idtoken.outputs.result }}
           ###### End of Repository/Build Configurations ######
+        env:
+          NUXT_PUBLIC_USER_API_BASE_URL: ${{ secrets.NUXT_PUBLIC_USER_API_BASE_URL }}
+          NUXT_PUBLIC_PRODUCT_API_BASE_URL: ${{ secrets.NUXT_PUBLIC_PRODUCT_API_BASE_URL }}
+          NUXT_PUBLIC_ORDER_API_BASE_URL: ${{ secrets.NUXT_PUBLIC_ORDER_API_BASE_URL }}
+          NUXT_PUBLIC_PAYMENT_API_BASE_URL: ${{ secrets.NUXT_PUBLIC_PAYMENT_API_BASE_URL }}
+          NUXT_PUBLIC_NOTIFICATION_API_BASE_URL: ${{ secrets.NUXT_PUBLIC_NOTIFICATION_API_BASE_URL }}
+          NUXT_PUBLIC_MIDTRANS_CLIENT_KEY: ${{ secrets.NUXT_PUBLIC_MIDTRANS_CLIENT_KEY }}  
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'

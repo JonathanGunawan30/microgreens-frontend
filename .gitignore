@@ -39,6 +39,3 @@ docker-compose.override.yml
 
 .eslintcache
 .stylelintcache
-
-public/libs/
-public/js/
