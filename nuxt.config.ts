@@ -1,9 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
 export default defineNuxtConfig({
+  ssr: false,
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
   nitro: {
+    preset: 'static',
     watchOptions: {
       ignored: ['**/sql_dump/**']
     }
@@ -20,7 +22,6 @@ export default defineNuxtConfig({
   },
 
   modules: [
-    '@nuxt/content',
     '@nuxt/eslint',
     '@nuxt/fonts',
     '@nuxt/icon',
@@ -44,7 +45,7 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      title: 'Sayur Project',
+      title: 'MicroGreens',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' }

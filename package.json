@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-app",
+  "name": "microgreens",
   "private": true,
   "type": "module",
   "scripts": {
@@ -12,7 +12,6 @@
   "dependencies": {
     "@heroicons/vue": "^2.2.0",
     "@iconify/vue": "^4.3.0",
-    "@nuxt/content": "3.5.1",
     "@nuxt/eslint": "1.3.0",
     "@nuxt/fonts": "0.11.2",
     "@nuxt/icon": "1.12.0",
@@ -41,6 +40,7 @@
     "wnumb": "^1.2.0"
   },
   "devDependencies": {
-    "@types/bootstrap": "^5.2.10"
+    "@types/bootstrap": "^5.2.10",
+    "@types/node": "^25.6.0"
   }
 }
