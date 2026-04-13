@@ -236,12 +236,7 @@ import { useProductStore } from '~/stores/product'
 import { useSwal } from '~/composables/useSwal'
 
 useHead({
-  link: [
-    { rel: 'stylesheet', href: '/libs/leaflet/dist/leaflet.css' }
-  ],
   script: [
-    { src: '/libs/leaflet/dist/leaflet.js', body: true },
-    { src: '/libs/simplebar/dist/simplebar.min.js', body: true },
     { src: '/js/theme.min.js', body: true },
   ],
 })

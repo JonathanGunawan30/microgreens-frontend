@@ -39,11 +39,15 @@ export default defineNuxtConfig({
   },
   css: [
     '@/assets/css/theme.min.css',
+    '@tabler/icons-webfont/dist/tabler-icons.min.css',
+    'nouislider/dist/nouislider.min.css',
+    'tiny-slider/dist/tiny-slider.css',
+    'swiper/swiper-bundle.css',
+    'simplebar/dist/simplebar.min.css',
+    'leaflet/dist/leaflet.css',
+    'flatpickr/dist/flatpickr.min.css',
   ],
   
-  build: {
-    transpile: ['swiper']
-  },
   app: {
     head: {
       title: 'MicroGreens',
@@ -56,13 +60,6 @@ export default defineNuxtConfig({
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
         { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap' },
-        { rel: 'stylesheet', href: '/libs/@tabler/icons-webfont/dist/tabler-icons.min.css' },
-        { rel: 'stylesheet', href: '/libs/nouislider/dist/nouislider.min.css' },
-        { rel: 'stylesheet', href: '/libs/dropzone/dist/dropzone.css' },
-        { rel: 'stylesheet', href: '/libs/quill/dist/quill.snow.css' },
-        { rel: 'stylesheet', href: '/libs/tiny-slider/dist/tiny-slider.css' },
-        { rel: 'stylesheet', href: '/libs/swiper/swiper-bundle.min.css' },
-        { rel: 'stylesheet', href: '/libs/simplebar/dist/simplebar.min.css' }
       ],
     },
   }

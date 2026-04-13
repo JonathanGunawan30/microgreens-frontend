@@ -1,6 +1,6 @@
 {
   "navigationFallback": {
     "rewrite": "/index.html",
-    "exclude": ["/images/*", "/libs/*", "/_nuxt/*", "/api/*", "/favicon.ico"]
+    "exclude": ["/images/*", "/_nuxt/*", "/api/*", "/favicon.ico"]
   }
 }

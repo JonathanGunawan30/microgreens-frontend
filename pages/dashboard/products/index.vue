@@ -408,7 +408,6 @@ const handleBulkDelete = async () => {
 
 useHead({
   script: [
-    { src: '/libs/simplebar/dist/simplebar.min.js', body: true },
     { src: '/js/theme.min.js', body: true },
   ],
 })

@@ -261,12 +261,6 @@ import { useSwal } from '~/composables/useSwal'
 import { useProductStore } from '~/stores/product'
 
 useHead({
-  link: [
-    { rel: 'stylesheet', href: '/libs/leaflet/dist/leaflet.css' }
-  ],
-  script: [
-    { src: '/libs/leaflet/dist/leaflet.js', body: true }
-  ]
 })
 
 definePageMeta({
