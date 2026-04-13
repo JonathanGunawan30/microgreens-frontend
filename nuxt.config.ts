@@ -40,6 +40,9 @@ export default defineNuxtConfig({
     plugins: [
     ],
   },
+  build: {
+    transpile: ['@lottiefiles/dotlottie-vue']
+  },
   css: [
     '@/assets/css/theme.min.css',
     '@tabler/icons-webfont/dist/tabler-icons.min.css',
