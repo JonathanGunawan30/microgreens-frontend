@@ -322,12 +322,9 @@ const SwiperNavigation = Navigation
 
 useHead({
   script: [
-    { src: '/libs/bootstrap/dist/js/bootstrap.bundle.min.js', body: true },
     { src: '/js/vendors/zoom.js', body: true },
-    { src: '/libs/simplebar/dist/simplebar.min.js', body: true },
     { src: '/js/theme.min.js', body: true },
     { src: '/js/vendors/countdown.js', body: true },
-    { src: '/libs/tiny-slider/dist/min/tiny-slider.js', body: true },
     { src: '/js/vendors/tns-slider.js', body: true },
   ],
 })
