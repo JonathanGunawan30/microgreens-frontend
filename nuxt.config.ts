@@ -33,6 +33,9 @@ export default defineNuxtConfig({
   colorMode: {
     preference: 'light'
   },
+  image: {
+    provider: 'none'
+  },
   vite: {
     plugins: [
     ],

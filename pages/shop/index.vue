@@ -73,13 +73,13 @@
                                     </ul>
                                 </div>
                                 <div class="flex flex-col gap-3">
-                                    <h5>Price</h5>
-                                    <div class="flex flex-col gap-3">
-                                        <div ref="priceRangeRef"></div>
-                                        <div class="flex flex-row gap-2 items-center">
-                                            <span class="text-gray-800">Price:</span>
-                                            <span class="text-xs">{{ priceRangeValue }}</span>
-                                        </div>
+                                    <h5 class="font-bold text-gray-900">Price</h5>
+                                    <div class="px-2 pt-3 pb-2">
+                                        <div ref="priceRangeRef" class="custom-slider"></div>
+                                    </div>
+                                    <div class="flex flex-row gap-2 items-center mt-1">
+                                        <span class="text-gray-800 text-sm">Price:</span>
+                                        <span class="text-sm font-semibold text-green-600">{{ priceRangeValue }}</span>
                                     </div>
                                 </div>
                                 
@@ -498,6 +498,38 @@ useHead({
     object-position: center;
     display: block;
     transition: transform 0.3s ease, opacity 0.3s ease;
+}
+:deep(.custom-slider.noUi-target) {
+    background: #e5e7eb;
+    border: none;
+    border-radius: 10px;
+    box-shadow: none;
+    height: 8px;
+}
+
+:deep(.custom-slider .noUi-connect) {
+    background: #0aad0a;
+}
+
+:deep(.custom-slider .noUi-handle) {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    top: -7px;
+    right: -10px;
+    cursor: pointer;
+}
+
+:deep(.custom-slider .noUi-handle::before),
+:deep(.custom-slider .noUi-handle::after) {
+    display: none; 
+}
+
+:deep(.custom-slider .noUi-handle:focus) {
+    outline: none;
 }
 .badge-stack {
     position: absolute;
