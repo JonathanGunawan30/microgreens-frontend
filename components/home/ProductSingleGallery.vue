@@ -7,25 +7,25 @@
                 :navigation="true"
                 :pagination="{ clickable: true }"
                 :thumbs="{ swiper: thumbsSwiper }"
-                @swiper="setMainSwiper"
                 class="product-images-slider"
+                @swiper="setMainSwiper"
             >
                 <SwiperSlide>
                     <div 
                         class="zoom" 
-                        @mousemove="handleZoom"
                         :style="{ backgroundImage: `url(${defaultImage})` }"
+                        @mousemove="handleZoom"
                     >
-                        <img :src="defaultImage" :alt="product?.product_name || 'Product Image'" class="w-full" />
+                        <img :src="defaultImage" :alt="product?.product_name || 'Product Image'" class="w-full" >
                     </div>
                 </SwiperSlide>
                 <SwiperSlide v-for="(child, index) in product?.child" :key="index">
                     <div 
                         class="zoom" 
-                        @mousemove="handleZoom"
                         :style="{ backgroundImage: `url(${child.image || defaultImage})` }"
+                        @mousemove="handleZoom"
                     >
-                        <img :src="child.image || defaultImage" :alt="`${product?.product_name || 'Product'} - ${child.weight}${product?.unit}`" class="w-full" />
+                        <img :src="child.image || defaultImage" :alt="`${product?.product_name || 'Product'} - ${child.weight}${product?.unit}`" class="w-full" >
                     </div>
                 </SwiperSlide>
             </Swiper>
@@ -39,18 +39,18 @@
                 :space-between="10"
                 :free-mode="true"
                 :watch-slides-progress="true"
-                @swiper="setThumbsSwiper"
                 class="product-images-slider-thumbs"
+                @swiper="setThumbsSwiper"
             >
                 <SwiperSlide class="cursor-pointer">
-                    <img :src="defaultImage" :alt="product?.product_name || 'Product Image'" class="w-full" />
+                    <img :src="defaultImage" :alt="product?.product_name || 'Product Image'" class="w-full" >
                 </SwiperSlide>
                 <SwiperSlide 
                     v-for="(child, index) in product?.child" 
                     :key="index"
                     class="cursor-pointer"
                 >
-                    <img :src="child.image || defaultImage" :alt="`${product?.product_name || 'Product'} - ${child.weight}${product?.unit}`" class="w-full" />
+                    <img :src="child.image || defaultImage" :alt="`${product?.product_name || 'Product'} - ${child.weight}${product?.unit}`" class="w-full" >
                 </SwiperSlide>
             </Swiper>
         </div>

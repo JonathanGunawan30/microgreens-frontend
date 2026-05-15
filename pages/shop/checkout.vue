@@ -9,25 +9,13 @@
                                 <li class="inline-block text-green-600 mr-2">
                                     <NuxtLink to="/">
                                         Home
-                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                            class="icon icon-tabler icon-tabler-chevron-right inline-block" width="14"
-                                            height="14" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M9 6l6 6l-6 6" />
-                                        </svg>
+                                        <Icon name="tabler:chevron-right" size="14" class="inline-block" />
                                     </NuxtLink>
                                 </li>
                                 <li class="inline-block text-green-600 mr-2">
                                     <NuxtLink to="/shop">
                                         Shop
-                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                            class="icon icon-tabler icon-tabler-chevron-right inline-block" width="14"
-                                            height="14" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M9 6l6 6l-6 6" />
-                                        </svg>
+                                        <Icon name="tabler:chevron-right" size="14" class="inline-block" />
                                     </NuxtLink>
                                 </li>
                                 <li class="inline-block text-gray-500 active" aria-current="page">Shop Checkout</li>
@@ -48,24 +36,16 @@
 
                 <div class="flex flex-wrap lg:flex-nowrap gap-10">
                     <div class="lg:w-3/5 md:w-full">
-                        <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div id="accordionFlushExample" class="accordion accordion-flush">
                             
                             <div class="border-b border-gray-300 py-4">
                                 <div class="flex justify-between items-center">
                                     <button 
-                                        @click="toggleSection('address')"
                                         class="flex flex-row gap-2 items-center text-gray-900 text-md font-bold"
                                         :aria-expanded="activeSection === 'address'"
+                                        @click="toggleSection('address')"
                                     >
-                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                            class="icon icon-tabler icon-tabler-map-pin inline-block text-gray-500"
-                                            width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5"
-                                            stroke="currentColor" fill="none" stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
-                                            <path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z" />
-                                        </svg>
+                                        <Icon name="tabler:map-pin" size="20" class="text-gray-500" />
                                         Delivery address
                                     </button>
                                 </div>
@@ -75,12 +55,12 @@
                                             <div class="card card-body flex-col gap-4 border border-green-500 bg-green-50/30">
                                                 <div class="relative flex items-center gap-2">
                                                     <input
-                                                        v-model="selectedAddress"
-                                                        class="w-4 h-4 text-green-600 bg-white border-gray-300 rounded-full focus:ring-green-600 focus:outline-none focus:ring-2"
-                                                        type="radio" 
-                                                        value="home"
                                                         id="homeRadio"
-                                                    />
+                                                        v-model="selectedAddress"
+                                                        class="w-4 h-4 text-green-600 bg-white border-gray-300 rounded-full focus:ring-green-600 focus:outline-none focus:ring-2" 
+                                                        type="radio"
+                                                        value="home"
+                                                    >
                                                     <label class="text-gray-800 font-semibold inline-block" for="homeRadio">Home</label>
                                                 </div>
                                                 <address class="not-italic text-gray-600 text-sm">
@@ -92,7 +72,7 @@
                                         </div>
                                     </div>
                                     <div class="mt-5 flex justify-end">
-                                        <button @click="nextSection" class="btn inline-flex items-center gap-x-2 bg-green-600 text-white border-green-600 hover:bg-green-700 rounded-lg px-6 py-2">
+                                        <button class="btn inline-flex items-center gap-x-2 bg-green-600 text-white border-green-600 hover:bg-green-700 rounded-lg px-6 py-2" @click="nextSection">
                                             Next
                                         </button>
                                     </div>
@@ -101,41 +81,33 @@
 
                             <div class="border-b border-gray-300 py-4">
                                 <button 
-                                    @click="toggleSection('instructions')"
                                     class="flex flex-row gap-2 items-center text-gray-900 text-md font-bold"
                                     :aria-expanded="activeSection === 'instructions'"
+                                    @click="toggleSection('instructions')"
                                 >
-                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                        class="icon icon-tabler icon-tabler-shopping-bag inline-block text-gray-500"
-                                        width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5"
-                                        stroke="currentColor" fill="none" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                        <path d="M6.331 8h11.339a2 2 0 0 1 1.977 2.304l-1.255 8.152a3 3 0 0 1 -2.966 2.544h-6.852a3 3 0 0 1 -2.965 -2.544l-1.255 -8.152a2 2 0 0 1 1.977 -2.304z" />
-                                        <path d="M9 11v-5a3 3 0 0 1 6 0v5" />
-                                    </svg>
+                                    <Icon name="tabler:shopping-bag" size="20" class="text-gray-500" />
                                     Delivery Method
                                 </button>
                                 <div v-show="activeSection === 'instructions'" class="my-6">
                                     <div class="mb-5 flex gap-6">
                                         <div class="flex items-center">
                                             <input
+                                                id="delivery"
                                                 v-model="deliveryMethod"
                                                 type="radio"
                                                 value="Delivery"
-                                                id="delivery"
                                                 class="w-4 h-4 text-green-600 bg-white border-gray-300 rounded-full focus:ring-green-600"
-                                            />
+                                            >
                                             <label for="delivery" class="ml-2 font-medium text-gray-800">Delivery (Rp 5.000)</label>
                                         </div>
                                         <div class="flex items-center">
                                             <input
+                                                id="pickup"
                                                 v-model="deliveryMethod"
                                                 type="radio"
                                                 value="Pickup"
-                                                id="pickup"
                                                 class="w-4 h-4 text-green-600 bg-white border-gray-300 rounded-full focus:ring-green-600"
-                                            />
+                                            >
                                             <label for="pickup" class="ml-2 font-medium text-gray-800">Store Pickup (Free)</label>
                                         </div>
                                     </div>
@@ -145,13 +117,13 @@
                                         class="border border-gray-300 text-gray-900 rounded-lg focus:ring-green-600 focus:border-green-600 block p-3 w-full text-sm"
                                         rows="3"
                                         :placeholder="deliveryMethod === 'Pickup' ? 'Write a note for store pickup...' : 'Write delivery instructions or landmarks...'"
-                                    ></textarea>
+                                    />
                                     
                                     <div class="mt-5 flex justify-end gap-3">
-                                        <button @click="prevSection" class="btn bg-white text-gray-800 border-gray-300 border hover:bg-gray-100 rounded-lg px-6 py-2">
+                                        <button class="btn bg-white text-gray-800 border-gray-300 border hover:bg-gray-100 rounded-lg px-6 py-2" @click="prevSection">
                                             Prev
                                         </button>
-                                        <button @click="nextSection" class="btn bg-green-600 text-white border-green-600 hover:bg-green-700 rounded-lg px-6 py-2">
+                                        <button class="btn bg-green-600 text-white border-green-600 hover:bg-green-700 rounded-lg px-6 py-2" @click="nextSection">
                                             Next
                                         </button>
                                     </div>
@@ -160,33 +132,23 @@
 
                             <div class="py-4">
                                 <button 
-                                    @click="toggleSection('payment')"
                                     class="flex flex-row gap-2 items-center text-gray-900 text-md font-bold"
                                     :aria-expanded="activeSection === 'payment'"
+                                    @click="toggleSection('payment')"
                                 >
-                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                        class="icon icon-tabler icon-tabler-credit-card inline-block text-gray-500"
-                                        width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5"
-                                        stroke="currentColor" fill="none" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                        <path d="M3 5m0 3a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3z" />
-                                        <path d="M3 10l18 0" />
-                                        <path d="M7 15l.01 0" />
-                                        <path d="M11 15l2 0" />
-                                    </svg>
+                                    <Icon name="tabler:credit-card" size="20" class="text-gray-500" />
                                     Payment Method
                                 </button>
                                 <div v-show="activeSection === 'payment'" class="mt-6 flex flex-col gap-4">
                                     <div class="card cursor-pointer border hover:border-green-500 transition-colors" :class="selectedPayment === 'COD' ? 'border-green-500 bg-green-50/30' : 'border-gray-200'" @click="selectedPayment = 'COD'">
                                         <div class="flex items-center p-5 gap-4">
                                             <input
+                                                id="codRadio"
                                                 v-model="selectedPayment"
                                                 class="w-4 h-4 text-green-600 bg-white border-gray-300 rounded-full focus:ring-green-600"
                                                 type="radio"
                                                 value="COD"
-                                                id="codRadio"
-                                            />
+                                            >
                                             <div class="flex flex-col gap-1">
                                                 <label for="codRadio" class="font-bold text-gray-800 cursor-pointer">Cash on Delivery</label>
                                                 <p class="text-sm text-gray-500">Pay with cash when your order is delivered to your address.</p>
@@ -197,12 +159,12 @@
                                     <div class="card cursor-pointer border hover:border-green-500 transition-colors" :class="selectedPayment === 'Midtrans' ? 'border-green-500 bg-green-50/30' : 'border-gray-200'" @click="selectedPayment = 'Midtrans'">
                                         <div class="flex items-center p-5 gap-4">
                                             <input
+                                                id="midtransRadio"
                                                 v-model="selectedPayment"
                                                 class="w-4 h-4 text-green-600 bg-white border-gray-300 rounded-full focus:ring-green-600"
                                                 type="radio"
                                                 value="Midtrans"
-                                                id="midtransRadio"
-                                            />
+                                            >
                                             <div class="flex flex-col gap-1">
                                                 <label for="midtransRadio" class="font-bold text-gray-800 cursor-pointer">Pay with Midtrans</label>
                                                 <p class="text-sm text-gray-500">Virtual Account (BCA, Mandiri, etc), GoPay, ShopeePay, QRIS.</p>
@@ -211,15 +173,15 @@
                                     </div>
 
                                     <div class="mt-6 flex justify-end gap-3">
-                                        <button @click="prevSection" class="btn bg-white text-gray-800 border-gray-300 border hover:bg-gray-100 rounded-lg px-6 py-2">
+                                        <button class="btn bg-white text-gray-800 border-gray-300 border hover:bg-gray-100 rounded-lg px-6 py-2" @click="prevSection">
                                             Prev
                                         </button>
                                         <button
-                                            @click="placeOrder"
                                             :disabled="orderStore.loading || paymentStore.loading"
                                             class="btn bg-green-600 text-white border-green-600 hover:bg-green-700 disabled:opacity-50 rounded-lg px-8 py-2 font-bold shadow-md"
+                                            @click="placeOrder"
                                         >
-                                            <span v-if="orderStore.loading || paymentStore.loading" class="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full inline-block mr-2"></span>
+                                            <span v-if="orderStore.loading || paymentStore.loading" class="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full inline-block mr-2"/>
                                             Place Order
                                         </button>
                                     </div>
@@ -234,7 +196,7 @@
                             <ul class="flex flex-col">
                                 <li v-for="item in cartItems" :key="item.id" class="py-4 px-6 border-b border-gray-100">
                                     <div class="flex items-center gap-4">
-                                        <img :src="item.product_image || ''" alt="Product" class="w-14 h-14 object-cover rounded-md border border-gray-200 bg-white" />
+                                        <img :src="item.product_image || ''" alt="Product" class="w-14 h-14 object-cover rounded-md border border-gray-200 bg-white" >
                                         <div class="flex-1">
                                             <h6 class="font-semibold text-gray-800 text-sm leading-tight">{{item.product_name || 'Unknown Product'}}</h6>
                                             <span class="text-gray-500 text-xs">{{item.weight}} {{ item.unit }} &times; {{ item.quantity }}</span>

@@ -4,29 +4,27 @@
       <div class="qv-dialog">
 
         <button class="qv-close" @click="$emit('close')">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-          </svg>
+          <Icon name="tabler:x" size="20" />
         </button>
 
         <div v-if="loading" class="qv-loading">
           <div class="qv-skeleton-left">
-            <div class="sk-img"></div>
+            <div class="sk-img"/>
             <div class="sk-thumbs">
-              <div class="sk-thumb" v-for="n in 3" :key="n"></div>
+              <div v-for="n in 3" :key="n" class="sk-thumb"/>
             </div>
           </div>
           <div class="qv-skeleton-right">
-            <div class="sk-line w-1/4 h-3 mb-2"></div>
-            <div class="sk-line w-3/4 h-7 mb-4"></div>
-            <div class="sk-line w-1/3 h-5 mb-6"></div>
-            <div class="sk-line w-full h-px mb-6"></div>
+            <div class="sk-line w-1/4 h-3 mb-2"/>
+            <div class="sk-line w-3/4 h-7 mb-4"/>
+            <div class="sk-line w-1/3 h-5 mb-6"/>
+            <div class="sk-line w-full h-px mb-6"/>
             <div class="flex gap-2 mb-6">
-              <div class="sk-line w-16 h-9"></div>
-              <div class="sk-line w-16 h-9"></div>
-              <div class="sk-line w-16 h-9"></div>
+              <div class="sk-line w-16 h-9"/>
+              <div class="sk-line w-16 h-9"/>
+              <div class="sk-line w-16 h-9"/>
             </div>
-            <div class="sk-line w-1/3 h-10 mb-2"></div>
+            <div class="sk-line w-1/3 h-10 mb-2"/>
           </div>
         </div>
 
@@ -34,7 +32,7 @@
 
           <div class="qv-left">
             <div class="qv-main-img">
-              <img :src="activeImage" :alt="detail.name" id="qv-product-image" />
+              <img id="qv-product-image" :src="activeImage" :alt="detail.name" >
             </div>
             <div v-if="allImages.length > 1" class="qv-thumbs">
               <button
@@ -44,7 +42,7 @@
                 :class="{ active: activeImage === img }"
                 @click="activeImage = img"
               >
-                <img :src="img" :alt="`${detail.name} ${i+1}`" />
+                <img :src="img" :alt="`${detail.name} ${i+1}`" >
               </button>
             </div>
           </div>
@@ -62,7 +60,7 @@
               <span v-if="hasDiscount" class="qv-price-badge">{{ discountPct }}% Off</span>
             </div>
 
-            <hr class="qv-divider" />
+            <hr class="qv-divider" >
 
             <div v-if="detail.child && detail.child.length" class="qv-variants">
               <p class="qv-label">Select Variant</p>
@@ -90,10 +88,8 @@
             </div>
 
             <div class="qv-actions">
-              <button class="qv-btn-cart" @click="addToCart" ref="addToCartBtn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
-                </svg>
+              <button ref="addToCartBtn" class="qv-btn-cart" @click="addToCart">
+                <Icon name="tabler:shopping-bag" size="16" />
                 Add to Cart
               </button>
               <NuxtLink :to="`/shop/${detail.id}`" class="qv-btn-detail">
@@ -101,7 +97,7 @@
               </NuxtLink>
             </div>
 
-            <hr class="qv-divider" />
+            <hr class="qv-divider" >
 
             <div class="qv-meta">
               <div class="qv-meta-row">
@@ -125,7 +121,7 @@
 
         <div v-else class="qv-error">
           <p>Failed to load product. Please try again.</p>
-          <button @click="$emit('close')" class="qv-btn-cart mt-4">Close</button>
+          <button class="qv-btn-cart mt-4" @click="$emit('close')">Close</button>
         </div>
 
       </div>

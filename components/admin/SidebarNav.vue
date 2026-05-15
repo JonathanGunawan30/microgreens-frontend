@@ -4,11 +4,11 @@
       <div class="navbar-vertical">
         <div class="px-4 py-5">
           <NuxtLink to="/" class="navbar-brand">
-            <img src="~/assets/images/logo/freshcart-logo.svg" alt="FreshCart Logo" />
+            <img src="/images/logo/freshcart-logo.svg" alt="FreshCart Logo" >
           </NuxtLink>
         </div>
         <div class="navbar-vertical-content flex-grow-1" data-simplebar="">
-          <ul class="navbar-nav flex-col" id="sideNavbar">
+          <ul id="sideNavbar" class="navbar-nav flex-col">
             <li class="nav-item">
               <NuxtLink 
                 class="nav-link" 
@@ -56,7 +56,7 @@
                 <div class="flex items-center">
                   <span class="nav-link-icon">
                     <Icon v-if="typeof item.icon === 'string'" :name="item.icon" size="18" />
-                    <component v-else :is="item.icon" />
+                    <component :is="item.icon" v-else />
                   </span>
                   <span class="nav-link-text">{{ item.label }}</span>
                 </div>
@@ -64,16 +64,7 @@
             </li>
             <li  class="nav-item">
               <button type="button" class="nav-link gap-2" @click="handleLogout">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                      stroke-linecap="round" stroke-linejoin="round"
-                      class="icon icon-tabler icons-tabler-outline icon-tabler-logout">
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                      <path
-                          d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
-                      <path d="M9 12h12l-3 -3" />
-                      <path d="M18 15l3 -3" />
-                  </svg>
+                  <Icon name="tabler:logout" size="18" />
                   Log out
               </button>
             </li>
@@ -83,7 +74,7 @@
     </nav>
 
     <Transition name="fade">
-      <div v-if="isOpen" class="fixed inset-0 bg-black/50 z-[1040] xl:hidden" @click="$emit('close-sidebar')"></div>
+      <div v-if="isOpen" class="fixed inset-0 bg-black/50 z-[1040] xl:hidden" @click="$emit('close-sidebar')"/>
     </Transition>
     
     <Transition name="slide">
@@ -91,12 +82,10 @@
         <div class="navbar-vertical">
           <div class="px-4 py-5 flex justify-between items-center">
             <NuxtLink to="/" class="navbar-brand">
-              <img src="~/assets/images/logo/freshcart-logo.svg" alt="FreshCart Logo" />
+              <img src="/images/logo/freshcart-logo.svg" alt="FreshCart Logo" >
             </NuxtLink>
             <button class="xl:hidden text-gray-500" @click="$emit('close-sidebar')">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
-                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-              </svg>
+              <Icon name="tabler:x" size="24" />
             </button>
           </div>
           <div class="navbar-vertical-content flex-grow-1">
@@ -128,7 +117,7 @@
                   <div class="flex items-center">
                     <span class="nav-link-icon">
                       <Icon v-if="typeof item.icon === 'string'" :name="item.icon" size="18" />
-                      <component v-else :is="item.icon" />
+                      <component :is="item.icon" v-else />
                     </span>
                     <span class="nav-link-text">{{ item.label }}</span>
                   </div>

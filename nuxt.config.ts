@@ -13,11 +13,11 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      apiUserBaseUrl: process.env.NUXT_PUBLIC_USER_API_BASE_URL,
-      apiProductBaseUrl: process.env.NUXT_PUBLIC_PRODUCT_API_BASE_URL,
-      apiOrderBaseUrl: process.env.NUXT_PUBLIC_ORDER_API_BASE_URL,
-      apiPaymentBaseUrl: process.env.NUXT_PUBLIC_PAYMENT_API_BASE_URL,
-      apiNotificationBaseUrl: process.env.NUXT_PUBLIC_NOTIFICATION_API_BASE_URL,
+      apiUserBaseUrl: process.env.NUXT_PUBLIC_USER_API_BASE_URL || process.env.NUXT_USER_API_BASE_URL,
+      apiProductBaseUrl: process.env.NUXT_PUBLIC_PRODUCT_API_BASE_URL || process.env.NUXT_PRODUCT_API_BASE_URL,
+      apiOrderBaseUrl: process.env.NUXT_PUBLIC_ORDER_API_BASE_URL || process.env.NUXT_ORDER_API_BASE_URL,
+      apiPaymentBaseUrl: process.env.NUXT_PUBLIC_PAYMENT_API_BASE_URL || process.env.NUXT_PAYMENT_API_BASE_URL,
+      apiNotificationBaseUrl: process.env.NUXT_PUBLIC_NOTIFICATION_API_BASE_URL || process.env.NUXT_NOTIFICATION_API_BASE_URL,
       midtransClientKey: process.env.NUXT_PUBLIC_MIDTRANS_CLIENT_KEY,
     }
   },
@@ -47,7 +47,6 @@ export default defineNuxtConfig({
     '@/assets/css/theme.min.css',
     '@tabler/icons-webfont/dist/tabler-icons.min.css',
     'nouislider/dist/nouislider.min.css',
-    'tiny-slider/dist/tiny-slider.css',
     'swiper/swiper-bundle.css',
     'simplebar/dist/simplebar.min.css',
     'leaflet/dist/leaflet.css',

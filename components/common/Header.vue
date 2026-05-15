@@ -25,7 +25,7 @@
           <div class="flex flex-wrap w-full items-center justify-between">
             <div class="lg:w-1/6 md:w-1/2 w-2/5">
               <NuxtLink to="/" class="navbar-brand">
-                <img src="/images/logo/freshcart-logo.svg" alt="TailwindCSS eCommerce HTML Template" />
+                <img src="/images/logo/freshcart-logo.svg" alt="TailwindCSS eCommerce HTML Template" >
               </NuxtLink>
             </div>
 
@@ -34,12 +34,12 @@
                 <div class="relative">
                   <label for="searchProducts" class="invisible hidden">Search</label>
                   <input
+                    id="searchProducts"
                     v-model="searchQuery"
                     class="border border-gray-300 text-gray-900 rounded-lg focus:shadow-[0_0_0_.25rem_rgba(10,173,10,.25)] focus:ring-green-600 focus:ring-0 focus:border-green-600 block p-2 px-3 disabled:opacity-50 disabled:pointer-events-none w-full text-base"
                     type="search"
                     placeholder="Search for products (Press Enter to search or clear)"
-                    id="searchProducts"
-                  />
+                  >
                   <button class="absolute right-0 top-0 p-3 text-gray-500 hover:text-green-600" type="submit">
                     <Icon name="tabler:search" size="16" />
                   </button>
@@ -50,7 +50,7 @@
             <div class="lg:w-1/5 text-end md:w-1/2 w-3/5">
               <div class="flex gap-7 items-center justify-end">
                 <div v-if="!authStore.isAuthenticated">
-                  <button @click="showLoginModal = true" class="text-gray-600">
+                  <button class="text-gray-600" @click="showLoginModal = true">
                     <Icon name="tabler:user" size="22" />
                   </button>
                 </div>
@@ -66,7 +66,8 @@
                     @click="showCart = true"
                   >
                     <Icon name="tabler:shopping-bag" size="24" />
-                    <span v-if="cartCount > 0"
+                    <span
+v-if="cartCount > 0"
                       class="absolute top-0 -mt-1 left-full rounded-full h-5 w-5 -ml-3 bg-green-600 text-white text-center font-semibold text-sm"
                     >
                       {{ cartCount }}
@@ -77,14 +78,12 @@
 
                 <div class="lg:hidden leading-none">
                   <button
-                    @click="showMobileMenu = true"
                     class="collapsed"
                     type="button"
                     aria-label="Toggle navigation"
+                    @click="showMobileMenu = true"
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-text-indent-right text-gray-800" viewBox="0 0 16 16">
-                      <path d="M2 3.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm10.646 2.146a.5.5 0 0 1 .708.708L11.707 8l1.647 1.646a.5.5 0 0 1-.708.708l-2-2a.5.5 0 0 1 0-.708l2-2zM2 6.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"></path>
-                    </svg>
+                    <Icon name="tabler:menu-2" size="32" class="text-gray-800" />
                   </button>
                 </div>
               </div>
@@ -132,16 +131,16 @@
       </nav>
     </div>
     <Transition name="fade">
-      <div v-if="showMobileMenu" class="fixed inset-0 bg-black/50 z-[1040] lg:hidden" @click="showMobileMenu = false"></div>
+      <div v-if="showMobileMenu" class="fixed inset-0 bg-black/50 z-[1040] lg:hidden" @click="showMobileMenu = false"/>
     </Transition>
     
     <Transition name="slide">
       <nav v-if="showMobileMenu" class="fixed top-0 left-0 h-full w-[280px] bg-white z-[1050] shadow-xl lg:hidden flex flex-col">
         <div class="p-5 border-b flex justify-between items-center bg-gray-50">
           <NuxtLink to="/" @click="showMobileMenu = false">
-            <img src="/images/logo/freshcart-logo.svg" alt="Logo" class="h-8" />
+            <img src="/images/logo/freshcart-logo.svg" alt="Logo" class="h-8" >
           </NuxtLink>
-          <button @click="showMobileMenu = false" class="text-gray-500">
+          <button class="text-gray-500" @click="showMobileMenu = false">
             <Icon name="tabler:x" size="24" />
           </button>
         </div>
@@ -168,7 +167,7 @@
           <div class="mb-6">
             <div class="flex justify-between items-center mb-3 px-3">
               <h6 class="text-xs font-bold text-gray-400 uppercase tracking-wider m-0">All Categories</h6>
-              <button @click="showMobileCategories = !showMobileCategories" class="text-gray-400">
+              <button class="text-gray-400" @click="showMobileCategories = !showMobileCategories">
                 <Icon :name="showMobileCategories ? 'tabler:chevron-up' : 'tabler:chevron-down'" size="16" />
               </button>
             </div>
@@ -202,9 +201,9 @@
                   Settings
                 </NuxtLink>
               </li>
-              <li class="my-4 border-t border-gray-100"></li>
+              <li class="my-4 border-t border-gray-100"/>
               <li class="nav-item">
-                <button @click="handleLogout" class="w-full text-left flex items-center gap-3 p-3 rounded-lg hover:bg-red-50 text-red-600 transition-colors">
+                <button class="w-full text-left flex items-center gap-3 p-3 rounded-lg hover:bg-red-50 text-red-600 transition-colors" @click="handleLogout">
                   <Icon name="tabler:logout" size="20" />
                   Log out
                 </button>
@@ -212,7 +211,7 @@
             </ul>
           </div>
           <div v-else class="px-3 mt-4">
-             <button @click="showMobileMenu = false; showLoginModal = true" class="btn w-full bg-green-600 text-white">
+             <button class="btn w-full bg-green-600 text-white" @click="showMobileMenu = false; showLoginModal = true">
                 Sign In
              </button>
           </div>

@@ -3,16 +3,14 @@
         <div class="container">
             <div class="flex flex-wrap justify-center items-center gap-8 lg:gap-16">
                 <div class="w-full md:w-1/3 xl:w-1/3 lg:order-1 order-2">
-                    <img src="~/assets/images/svg-graphics/fp-g.svg" alt="Update Password Illustration" class="max-w-full h-auto" />
+                    <img src="/images/svg-graphics/fp-g.svg" alt="Update Password Illustration" class="max-w-full h-auto" >
                 </div>
 
                 <div class="w-full md:w-1/2 lg:mx-1/6 xl:w-1/3 lg:order-2 order-1 flex flex-col gap-6">
                     
                     <div v-if="showSuccessMessage" class="text-center p-8 bg-white border border-green-200 rounded-xl shadow-sm">
                         <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 text-green-600 mb-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l5 5l10 -10" />
-                            </svg>
+                            <Icon name="tabler:check" size="32" />
                         </div>
                         <h2 class="text-2xl font-bold text-gray-900 mb-2">Password Updated!</h2>
                         <p class="text-gray-600 mb-6">
@@ -30,12 +28,12 @@
                             <p class="text-gray-600">Please enter your new password below to secure your account.</p>
                         </div>
 
-                        <form @submit.prevent="handleSubmit" class="needs-validation" novalidate>
+                        <form class="needs-validation" novalidate @submit.prevent="handleSubmit">
                             
                             <div v-if="authStore.error || localError" class="mb-4 p-4 text-sm text-red-800 rounded-lg bg-red-50 border border-red-200 relative" role="alert">
-                                <button type="button" @click="clearErrors" class="absolute top-2 right-2 p-1 text-red-800 hover:bg-red-200 rounded-md transition-colors">
+                                <button type="button" class="absolute top-2 right-2 p-1 text-red-800 hover:bg-red-200 rounded-md transition-colors" @click="clearErrors">
                                     <span class="sr-only">Close</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                                    <Icon name="tabler:x" size="16" />
                                 </button>
                                 <div class="flex items-center pr-6">
                                     <span class="font-bold mr-1">Error!</span> {{ localError || authStore.error }}
@@ -46,12 +44,13 @@
                                 <div class="w-full">
                                     <div class="relative">
                                         <label for="formSignupPassword" class="invisible hidden">New Password</label>
-                                        <input v-model="password_new" :type="showPassword ? 'text' : 'password'"
-                                            class="form-control border border-gray-300 text-gray-900 rounded-lg focus:shadow-[0_0_0_.25rem_rgba(10,173,10,.25)] focus:ring-green-600 focus:ring-0 focus:border-green-600 block p-2.5 px-3 disabled:opacity-50 disabled:pointer-events-none w-full text-base pr-10"
-                                            id="formSignupPassword" placeholder="New Password" required />
-                                        <span @click="togglePassword" class="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-gray-500 hover:text-gray-700">
-                                            <svg v-if="!showPassword" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
-                                            <svg v-else xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.585 10.587a2 2 0 0 0 2.829 2.828" /><path d="M16.681 16.673a8.717 8.717 0 0 1 -4.681 1.327c-3.6 0 -6.6 -2 -9 -6c1.272 -2.12 2.712 -3.678 4.32 -4.674m2.86 -1.146a9.055 9.055 0 0 1 1.82 -.18c3.6 0 6.6 2 9 6c-.666 1.11 -1.379 2.067 -2.138 2.87" /><path d="M3 3l18 18" /></svg>
+                                        <input
+id="formSignupPassword" v-model="password_new"
+                                            :type="showPassword ? 'text' : 'password'"
+                                            class="form-control border border-gray-300 text-gray-900 rounded-lg focus:shadow-[0_0_0_.25rem_rgba(10,173,10,.25)] focus:ring-green-600 focus:ring-0 focus:border-green-600 block p-2.5 px-3 disabled:opacity-50 disabled:pointer-events-none w-full text-base pr-10" placeholder="New Password" required >
+                                        <span class="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-gray-500 hover:text-gray-700" @click="togglePassword">
+                                            <Icon v-if="!showPassword" name="tabler:eye" size="20" />
+                                            <Icon v-else name="tabler:eye-off" size="20" />
                                         </span>
                                     </div>
                                 </div>
@@ -59,20 +58,22 @@
                                 <div class="w-full">
                                     <div class="relative">
                                         <label for="formSignupPasswordConfirm" class="invisible hidden">Password Confirmation</label>
-                                        <input v-model="password_confirmation" :type="showPasswordConfirm ? 'text' : 'password'"
-                                            class="form-control border border-gray-300 text-gray-900 rounded-lg focus:shadow-[0_0_0_.25rem_rgba(10,173,10,.25)] focus:ring-green-600 focus:ring-0 focus:border-green-600 block p-2.5 px-3 disabled:opacity-50 disabled:pointer-events-none w-full text-base pr-10"
-                                            id="formSignupPasswordConfirm" placeholder="Confirm New Password" required />
-                                        <span @click="togglePasswordConfirm" class="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-gray-500 hover:text-gray-700">
-                                            <svg v-if="!showPasswordConfirm" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
-                                            <svg v-else xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.585 10.587a2 2 0 0 0 2.829 2.828" /><path d="M16.681 16.673a8.717 8.717 0 0 1 -4.681 1.327c-3.6 0 -6.6 -2 -9 -6c1.272 -2.12 2.712 -3.678 4.32 -4.674m2.86 -1.146a9.055 9.055 0 0 1 1.82 -.18c3.6 0 6.6 2 9 6c-.666 1.11 -1.379 2.067 -2.138 2.87" /><path d="M3 3l18 18" /></svg>
+                                        <input
+id="formSignupPasswordConfirm" v-model="password_confirmation"
+                                            :type="showPasswordConfirm ? 'text' : 'password'"
+                                            class="form-control border border-gray-300 text-gray-900 rounded-lg focus:shadow-[0_0_0_.25rem_rgba(10,173,10,.25)] focus:ring-green-600 focus:ring-0 focus:border-green-600 block p-2.5 px-3 disabled:opacity-50 disabled:pointer-events-none w-full text-base pr-10" placeholder="Confirm New Password" required >
+                                        <span class="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-gray-500 hover:text-gray-700" @click="togglePasswordConfirm">
+                                            <Icon v-if="!showPasswordConfirm" name="tabler:eye" size="20" />
+                                            <Icon v-else name="tabler:eye-off" size="20" />
                                         </span>
                                     </div>
                                 </div>
                                 
                                 <div class="w-full mt-2">
-                                    <button :disabled="authStore.loading" type="submit"
+                                    <button
+:disabled="authStore.loading" type="submit"
                                         class="w-full btn inline-flex items-center justify-center gap-x-2 bg-green-600 text-white border-green-600 disabled:opacity-60 disabled:cursor-not-allowed hover:bg-green-700 transition py-2.5 rounded-lg font-semibold">
-                                        <span v-if="authStore.loading" class="animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full"></span>
+                                        <Icon v-if="authStore.loading" name="tabler:loader-2" size="20" class="animate-spin" />
                                         <span v-else>Update Password</span>
                                     </button>
                                 </div>
@@ -81,9 +82,9 @@
                             <div class="mt-6 text-center">
                                 <p class="text-sm text-gray-600">
                                     By continuing, you agree to our
-                                    <a href="#" @click.prevent="showDemoAlert" class="text-green-600 hover:underline">Terms of Service</a>
+                                    <a href="#" class="text-green-600 hover:underline" @click.prevent="showDemoAlert">Terms of Service</a>
                                     &
-                                    <a href="#" @click.prevent="showDemoAlert" class="text-green-600 hover:underline">Privacy Policy</a>
+                                    <a href="#" class="text-green-600 hover:underline" @click.prevent="showDemoAlert">Privacy Policy</a>
                                 </p>
                             </div>
                         </form>

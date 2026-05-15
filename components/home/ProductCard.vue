@@ -18,15 +18,12 @@
               :class="{ 'img-loaded': imageLoaded }"
               @load="imageLoaded = true"
             >
-            <div v-if="!imageLoaded" class="img-placeholder"></div>
+            <div v-if="!imageLoaded" class="img-placeholder"/>
           </NuxtLink>
 
           <div class="quick-view-overlay">
             <button class="btn-quick-view" @click="showQuickView">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="15" height="15" fill="currentColor">
-                <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.19 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
-                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
-              </svg>
+              <Icon name="tabler:eye" size="15" />
               <span>Quick View</span>
             </button>
           </div>
@@ -49,10 +46,7 @@
             </div>
             
             <button class="btn-add" @click="showQuickView">
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="12" y1="5" x2="12" y2="19"/>
-                <line x1="5" y1="12" x2="19" y2="12"/>
-              </svg>
+              <Icon name="tabler:plus" size="14" stroke-width="3" />
               Add
             </button>
           </div>

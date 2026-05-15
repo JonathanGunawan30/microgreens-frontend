@@ -10,7 +10,7 @@
       leave-to-class="opacity-0"
       appear
     >
-      <div v-if="isOpen" class="fixed inset-0 bg-black/65 z-[1051]" @click="closeCart"></div>
+      <div v-if="isOpen" class="fixed inset-0 bg-black/65 z-[1051]" @click="closeCart"/>
     </Transition>
 
     <Transition
@@ -20,8 +20,8 @@
       leave-active-class="transition-transform duration-300 ease-in"
       leave-from-class="translate-x-0"
       leave-to-class="translate-x-full"
-      @after-leave="onAfterLeave"
       appear
+      @after-leave="onAfterLeave"
     >
       <div v-if="isOpen" class="fixed right-0 top-0 h-full bg-white shadow-xl w-full max-w-[520px] z-[1052] flex flex-col">
         
@@ -37,7 +37,7 @@
         <div class="flex-grow overflow-y-auto p-4 relative">
           
           <div v-if="cartStore.loading" class="absolute inset-0 bg-white/70 z-20 flex items-center justify-center">
-            <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-green-600"></div>
+            <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-green-600"/>
           </div>
 
           <div class="bg-red-50 text-red-600 px-3 py-2.5 rounded text-sm mb-4 border border-red-100">
@@ -47,7 +47,7 @@
           <div v-if="!cartItems || cartItems.length === 0" class="text-center py-12">
             <Icon name="tabler:shopping-cart-x" size="56" class="text-gray-300 mx-auto mb-3" />
             <h6 class="font-bold text-gray-700">Your cart is empty</h6>
-            <button @click="closeCart" class="mt-4 btn bg-green-600 text-white hover:bg-green-700 btn-sm text-xs px-3 py-1.5 rounded">
+            <button class="mt-4 btn bg-green-600 text-white hover:bg-green-700 btn-sm text-xs px-3 py-1.5 rounded" @click="closeCart">
               Start Shopping
             </button>
           </div>
@@ -57,15 +57,15 @@
               <div class="flex items-center justify-between gap-3">
                 
                 <div class="w-[58%] flex items-start gap-3 min-w-0">
-                  <NuxtLink :to="`/shop/${item.product_id || item.id}`" @click="closeCart" class="flex-shrink-0">
-                    <img :src="item.product_image || item.image || '/images/placeholder.jpg'" :alt="item.product_name || item.name" class="w-14 h-14 object-contain rounded border" />
+                  <NuxtLink :to="`/shop/${item.product_id || item.id}`" class="flex-shrink-0" @click="closeCart">
+                    <img :src="item.product_image || item.image || '/images/placeholder.jpg'" :alt="item.product_name || item.name" class="w-14 h-14 object-contain rounded border" >
                   </NuxtLink>
                   <div class="flex flex-col min-w-0">
-                    <NuxtLink :to="`/shop/${item.product_id || item.id}`" @click="closeCart" class="text-sm font-semibold text-gray-800 hover:text-green-600 leading-tight truncate">
+                    <NuxtLink :to="`/shop/${item.product_id || item.id}`" class="text-sm font-semibold text-gray-800 hover:text-green-600 leading-tight truncate" @click="closeCart">
                       {{ item.product_name || item.name }}
                     </NuxtLink>
                     <span class="text-xs text-gray-500 mt-0.5">{{ item.weight }} {{ item.unit }}</span>
-                    <button @click="removeItem(item)" class="text-gray-500 hover:text-red-500 flex items-center mt-1.5 w-max group transition">
+                    <button class="text-gray-500 hover:text-red-500 flex items-center mt-1.5 w-max group transition" @click="removeItem(item)">
                       <Icon name="tabler:trash" size="14" class="mr-1 bg-red-500" />
                       <span class="text-xs">Remove</span>
                     </button>
@@ -75,9 +75,9 @@
                 <div class="w-24 flex-shrink-0 flex justify-center">
                   <div class="flex items-center border border-gray-300 rounded-lg h-8 w-full justify-between">
                     <button 
-                      @click="decreaseQuantity(item)" 
-                      :disabled="cartStore.loading"
+                      :disabled="cartStore.loading" 
                       class="w-8 h-full flex justify-center items-center text-gray-600 hover:bg-gray-100 disabled:opacity-50"
+                      @click="decreaseQuantity(item)"
                     >
                       -
                     </button>
@@ -86,11 +86,11 @@
                       :value="item.quantity" 
                       readonly
                       class="w-8 h-full text-center text-sm font-semibold border-0 bg-transparent p-0 focus:ring-0" 
-                    />
+                    >
                     <button 
-                      @click="increaseQuantity(item)" 
-                      :disabled="cartStore.loading"
+                      :disabled="cartStore.loading" 
                       class="w-8 h-full flex justify-center items-center text-gray-600 hover:bg-gray-100 disabled:opacity-50"
+                      @click="increaseQuantity(item)"
                     >
                       +
                     </button>
@@ -113,15 +113,15 @@
           </div>
           <div class="flex gap-3">
             <button 
-              @click="closeCart" 
-              class="w-1/2 bg-green-600 text-white font-semibold py-2.5 rounded-lg hover:bg-green-700 transition text-sm Checkout"
+              class="w-1/2 bg-green-600 text-white font-semibold py-2.5 rounded-lg hover:bg-green-700 transition text-sm Checkout" 
+              @click="closeCart"
             >
               Continue Shopping
             </button>
             <NuxtLink 
               to="/shop/checkout" 
-              @click="closeCart"
               class="w-1/2 bg-gray-900 text-white font-semibold py-2.5 rounded-lg hover:bg-gray-800 transition text-center text-sm"
+              @click="closeCart"
             >
               Proceed To Checkout
             </NuxtLink>

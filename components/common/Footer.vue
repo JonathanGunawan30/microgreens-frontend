@@ -28,7 +28,8 @@
   
           <div class="w-full md:w-full lg:w-2/3">
             <div class="flex flex-wrap">
-              <div v-for="(section, index) in footerSections" :key="index" 
+              <div
+v-for="(section, index) in footerSections" :key="index" 
                    class="w-1/2 sm:w-1/2 md:w-1/4 flex flex-col gap-4 mb-6">
                 <h6>{{ section.title }}</h6>
                 <ul class="flex flex-col gap-2">
@@ -50,7 +51,7 @@
                 <div class="text-gray-900">Payment Partners</div>
                 <ul class="flex items-center flex-row gap-4">
                   <li v-for="(payment, index) in paymentMethods" :key="index">
-                    <img :src="`/images/payment/${payment}.svg`" :alt="payment" class="h-6" />
+                    <img :src="`/images/payment/${payment}.svg`" :alt="payment" class="h-6" >
                   </li>
                 </ul>
               </div>
@@ -60,10 +61,10 @@
                 <div class="text-gray-900">Get deliveries with FreshCart</div>
                 <ul class="flex flex-row gap-2">
                   <li>
-                    <img src="~/assets/images/appbutton/appstore-btn.svg" alt="App Store" class="h-10" />
+                    <img src="/images/appbutton/appstore-btn.svg" alt="App Store" class="h-10" >
                   </li>
                   <li>
-                    <img src="~/assets/images/appbutton/googleplay-btn.svg" alt="Google Play" class="h-10" />
+                    <img src="/images/appbutton/googleplay-btn.svg" alt="Google Play" class="h-10" >
                   </li>
                 </ul>
               </div>

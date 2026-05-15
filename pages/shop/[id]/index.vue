@@ -7,37 +7,19 @@
                         <li class="inline-block text-green-600 mr-2 mb-1">
                             <NuxtLink to="/" class="flex items-center hover:text-green-700">
                                 Home
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                    class="icon icon-tabler icon-tabler-chevron-right inline-block ml-1" width="16"
-                                    height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M9 6l6 6l-6 6" />
-                                </svg>
+                                <Icon name="tabler:chevron-right" size="16" class="inline-block ml-1" />
                             </NuxtLink>
                         </li>
                         <li class="inline-block text-green-600 mr-2 mb-1">
                             <NuxtLink to="/shop" class="flex items-center hover:text-green-700">
                                 Shop
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                    class="icon icon-tabler icon-tabler-chevron-right inline-block ml-1" width="16"
-                                    height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M9 6l6 6l-6 6" />
-                                </svg>
+                                <Icon name="tabler:chevron-right" size="16" class="inline-block ml-1" />
                             </NuxtLink>
                         </li>
                         <li v-if="featuredProduct.category_name" class="inline-block text-green-600 mr-2 mb-1">
                             <NuxtLink :to="`/shop?category=${featuredProduct.category_slug}`" class="flex items-center hover:text-green-700">
                                 {{ featuredProduct.category_name }}
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                    class="icon icon-tabler icon-tabler-chevron-right inline-block ml-1" width="16"
-                                    height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M9 6l6 6l-6 6" />
-                                </svg>
+                                <Icon name="tabler:chevron-right" size="16" class="inline-block ml-1" />
                             </NuxtLink>
                         </li>
                         <li class="inline-block text-gray-500 active mb-1" aria-current="page">{{ featuredProduct.name }}</li>
@@ -58,21 +40,21 @@
                                     :src="activeImage || '/images/placeholder.jpg'" 
                                     :alt="featuredProduct.name" 
                                     class="w-full h-full object-contain" 
-                                />
+                                >
                             </Transition>
                         </div>
-                        <div class="product-tools" v-if="allImages.length > 1">
+                        <div v-if="allImages.length > 1" class="product-tools">
                             <div class="thumbnails flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
                                 <div 
                                     v-for="(img, idx) in allImages" 
                                     :key="idx" 
-                                    @click="activeImage = img"
                                     :class="[
                                         'w-24 h-24 rounded-lg flex-shrink-0 cursor-pointer border p-2 flex items-center justify-center bg-white transition-all duration-300', 
                                         activeImage === img ? 'border-green-600 border-2' : 'border-gray-200 hover:border-green-400'
                                     ]"
+                                    @click="activeImage = img"
                                 >
-                                    <img :src="img" :alt="`thumbnail-${idx}`" class="w-full h-full object-contain" />
+                                    <img :src="img" :alt="`thumbnail-${idx}`" class="w-full h-full object-contain" >
                                 </div>
                             </div>
                         </div>
@@ -96,18 +78,19 @@
                             </div>
                             
                             <div class="flex flex-col gap-6 mt-2">
-                                <hr />
+                                <hr >
                                 
                                 <div v-if="featuredProduct.child && featuredProduct.child.length > 0">
-                                    <button v-for="child in featuredProduct.child" :key="child.id"
+                                    <button
+v-for="child in featuredProduct.child" :key="child.id"
                                         type="button"
-                                        @click="handleVariantSelect(child)"
                                         :class="[
                                             'btn inline-flex items-center gap-x-2 border disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:ring-4 mr-2 mb-2 transition-colors py-2 px-4 text-base font-medium rounded',
                                             selectedChild?.id === child.id 
                                                 ? 'bg-green-600 text-white border-green-600 hover:bg-green-700 focus:ring-green-300' 
                                                 : 'bg-white text-gray-800 border-gray-300 hover:bg-gray-100 hover:border-gray-400 focus:ring-gray-300'
-                                        ]">
+                                        ]"
+                                        @click="handleVariantSelect(child)">
                                         {{ child.weight }}
                                     </button>
                                 </div>
@@ -115,31 +98,28 @@
                                 <div>
                                     <div class="w-32 mb-4">
                                         <div class="input-group input-spinner rounded flex justify-between items-center h-12 border border-gray-300">
-                                            <button type="button" @click="handleQuantityChange('decrement')" :disabled="quantity <= 1" class="button-minus w-12 h-full border-r border-gray-300 cursor-pointer text-gray-600 hover:bg-gray-100 flex items-center justify-center text-lg disabled:opacity-50 disabled:cursor-not-allowed">
+                                            <button type="button" :disabled="quantity <= 1" class="button-minus w-12 h-full border-r border-gray-300 cursor-pointer text-gray-600 hover:bg-gray-100 flex items-center justify-center text-lg disabled:opacity-50 disabled:cursor-not-allowed" @click="handleQuantityChange('decrement')">
                                                 -
                                             </button>
-                                            <input type="number" v-model="quantity" readonly class="quantity-field w-12 px-2 text-center h-full border-0 bg-transparent focus:ring-0 text-base font-semibold text-gray-800 p-0" />
-                                            <button type="button" @click="handleQuantityChange('increment')" :disabled="quantity >= maxAllowed || availableStock <= 0" class="button-plus w-12 h-full border-l border-gray-300 cursor-pointer text-gray-600 hover:bg-gray-100 flex items-center justify-center text-lg disabled:opacity-50 disabled:cursor-not-allowed">
+                                            <input v-model="quantity" type="number" readonly class="quantity-field w-12 px-2 text-center h-full border-0 bg-transparent focus:ring-0 text-base font-semibold text-gray-800 p-0" >
+                                            <button type="button" :disabled="quantity >= maxAllowed || availableStock <= 0" class="button-plus w-12 h-full border-l border-gray-300 cursor-pointer text-gray-600 hover:bg-gray-100 flex items-center justify-center text-lg disabled:opacity-50 disabled:cursor-not-allowed" @click="handleQuantityChange('increment')">
                                                 +
                                             </button>
                                         </div>
                                     </div>
                                     <div class="flex flex-wrap justify-start gap-2 items-center">
                                         <div class="md:w-2/5 w-full grid">
-                                            <button type="button" @click="addToCart" :disabled="availableStock <= 0" ref="addToCartBtn"
-                                                class="btn bg-green-600 text-white border-green-600 disabled:opacity-60 disabled:pointer-events-none disabled:cursor-not-allowed hover:text-white hover:bg-green-700 hover:border-green-700 active:bg-green-700 active:border-green-700 focus:outline-none focus:ring-4 focus:ring-green-300 justify-center flex items-center gap-2 h-12 text-base">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-bag" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                    <path d="M6.331 8h11.339a2 2 0 0 1 1.977 2.304l-1.255 8.152a3 3 0 0 1 -2.966 2.544h-6.852a3 3 0 0 1 -2.965 -2.544l-1.255 -8.152a2 2 0 0 1 1.977 -2.304z" />
-                                                    <path d="M9 11v-5a3 3 0 0 1 6 0v5" />
-                                                </svg>
+                                            <button
+ref="addToCartBtn" type="button" :disabled="availableStock <= 0" class="btn bg-green-600 text-white border-green-600 disabled:opacity-60 disabled:pointer-events-none disabled:cursor-not-allowed hover:text-white hover:bg-green-700 hover:border-green-700 active:bg-green-700 active:border-green-700 focus:outline-none focus:ring-4 focus:ring-green-300 justify-center flex items-center gap-2 h-12 text-base"
+                                                @click="addToCart">
+                                                <Icon name="tabler:shopping-bag" size="20" />
                                                 {{ currentProductData.stock <= 0 ? 'Out of Stock' : (availableStock <= 0 ? 'Max in Cart' : 'Add to cart') }}
                                             </button>
                                         </div>
                                     </div>
                                 </div>
                                 
-                                <hr />
+                                <hr >
                                 
                                 <div>
                                     <table class="text-left w-full text-base text-gray-800">
@@ -178,26 +158,26 @@
             <div class="container">
                 <div class="flex flex-wrap">
                     <div class="w-full">
-                        <ul class="nav nav-line-bottom border-b border-gray-300 pl-0 flex flex-wrap gap-4 overflow-x-hidden" id="myTab" role="tablist">
+                        <ul id="myTab" class="nav nav-line-bottom border-b border-gray-300 pl-0 flex flex-wrap gap-4 overflow-x-hidden" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <button @click="activeTab = 'details'" :class="['inline-block py-3 font-semibold px-4 no-underline nav-link text-base transition-colors', activeTab === 'details' ? 'active border-green-600 text-green-600' : 'text-gray-600 hover:text-gray-900']" type="button" role="tab">
+                                <button :class="['inline-block py-3 font-semibold px-4 no-underline nav-link text-base transition-colors', activeTab === 'details' ? 'active border-green-600 text-green-600' : 'text-gray-600 hover:text-gray-900']" type="button" role="tab" @click="activeTab = 'details'">
                                     Product Details
                                 </button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button @click="activeTab = 'info'" :class="['inline-block py-3 font-semibold px-4 no-underline nav-link text-base transition-colors', activeTab === 'info' ? 'active border-green-600 text-green-600' : 'text-gray-600 hover:text-gray-900']" type="button" role="tab">
+                                <button :class="['inline-block py-3 font-semibold px-4 no-underline nav-link text-base transition-colors', activeTab === 'info' ? 'active border-green-600 text-green-600' : 'text-gray-600 hover:text-gray-900']" type="button" role="tab" @click="activeTab = 'info'">
                                     Information
                                 </button>
                             </li>
                         </ul>
                         
-                        <div class="tab-content mt-8" id="myTabContent">
+                        <div id="myTabContent" class="tab-content mt-8">
                             
                             <div v-show="activeTab === 'details'" class="tab-pane active opacity-100 block" role="tabpanel">
                                 <div class="my-8 flex flex-col gap-6 max-w-4xl">
                                     <div class="flex flex-col gap-2">
                                         <h3 class="text-lg font-bold text-gray-900">Nutrient Value &amp; Benefits</h3>
-                                        <div v-if="featuredProduct.description" v-html="featuredProduct.description" class="text-gray-700 leading-relaxed text-base"></div>
+                                        <div v-if="featuredProduct.description" class="text-gray-700 leading-relaxed text-base" v-html="featuredProduct.description"/>
                                         <p v-else class="text-gray-500 italic text-base">No description available.</p>
                                     </div>
                                     <div class="flex flex-col gap-2 mt-2">
@@ -244,11 +224,11 @@
         <div class="mt-4">
             <div class="container">
                 <div class="flex items-center gap-2">
-                    <div class="skeleton h-4 w-10 rounded"></div>
-                    <div class="skeleton h-4 w-4 rounded"></div>
-                    <div class="skeleton h-4 w-12 rounded"></div>
-                    <div class="skeleton h-4 w-4 rounded"></div>
-                    <div class="skeleton h-4 w-24 rounded"></div>
+                    <div class="skeleton h-4 w-10 rounded"/>
+                    <div class="skeleton h-4 w-4 rounded"/>
+                    <div class="skeleton h-4 w-12 rounded"/>
+                    <div class="skeleton h-4 w-4 rounded"/>
+                    <div class="skeleton h-4 w-24 rounded"/>
                 </div>
             </div>
         </div>
@@ -258,44 +238,44 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
                     
                     <div class="w-full">
-                        <div class="skeleton rounded-lg h-[400px] md:h-[500px] mb-4"></div>
+                        <div class="skeleton rounded-lg h-[400px] md:h-[500px] mb-4"/>
                         <div class="flex gap-3">
-                            <div class="skeleton w-24 h-24 rounded-lg flex-shrink-0"></div>
-                            <div class="skeleton w-24 h-24 rounded-lg flex-shrink-0"></div>
-                            <div class="skeleton w-24 h-24 rounded-lg flex-shrink-0"></div>
+                            <div class="skeleton w-24 h-24 rounded-lg flex-shrink-0"/>
+                            <div class="skeleton w-24 h-24 rounded-lg flex-shrink-0"/>
+                            <div class="skeleton w-24 h-24 rounded-lg flex-shrink-0"/>
                         </div>
                     </div>
 
                     <div class="w-full flex flex-col gap-4">
-                        <div class="skeleton h-4 w-24 rounded"></div>
-                        <div class="skeleton h-8 w-3/4 rounded"></div>
-                        <div class="skeleton h-8 w-1/2 rounded"></div>
+                        <div class="skeleton h-4 w-24 rounded"/>
+                        <div class="skeleton h-8 w-3/4 rounded"/>
+                        <div class="skeleton h-8 w-1/2 rounded"/>
 
-                        <hr class="my-2"/>
+                        <hr class="my-2">
 
                         <div class="flex gap-2">
-                            <div class="skeleton h-10 w-20 rounded"></div>
-                            <div class="skeleton h-10 w-20 rounded"></div>
-                            <div class="skeleton h-10 w-20 rounded"></div>
+                            <div class="skeleton h-10 w-20 rounded"/>
+                            <div class="skeleton h-10 w-20 rounded"/>
+                            <div class="skeleton h-10 w-20 rounded"/>
                         </div>
 
-                        <div class="skeleton h-12 w-32 rounded"></div>
-                        <div class="skeleton h-12 w-full md:w-2/5 rounded"></div>
+                        <div class="skeleton h-12 w-32 rounded"/>
+                        <div class="skeleton h-12 w-full md:w-2/5 rounded"/>
 
-                        <hr class="my-2"/>
+                        <hr class="my-2">
 
                         <div class="flex flex-col gap-3">
                             <div class="flex gap-4">
-                                <div class="skeleton h-4 w-24 rounded"></div>
-                                <div class="skeleton h-4 w-32 rounded"></div>
+                                <div class="skeleton h-4 w-24 rounded"/>
+                                <div class="skeleton h-4 w-32 rounded"/>
                             </div>
                             <div class="flex gap-4">
-                                <div class="skeleton h-4 w-24 rounded"></div>
-                                <div class="skeleton h-4 w-32 rounded"></div>
+                                <div class="skeleton h-4 w-24 rounded"/>
+                                <div class="skeleton h-4 w-32 rounded"/>
                             </div>
                             <div class="flex gap-4">
-                                <div class="skeleton h-4 w-24 rounded"></div>
-                                <div class="skeleton h-4 w-32 rounded"></div>
+                                <div class="skeleton h-4 w-24 rounded"/>
+                                <div class="skeleton h-4 w-32 rounded"/>
                             </div>
                         </div>
                     </div>
@@ -306,14 +286,14 @@
         <section class="mb-10">
             <div class="container">
                 <div class="flex gap-4 border-b border-gray-200 pb-3 mb-8">
-                    <div class="skeleton h-6 w-32 rounded"></div>
-                    <div class="skeleton h-6 w-24 rounded"></div>
+                    <div class="skeleton h-6 w-32 rounded"/>
+                    <div class="skeleton h-6 w-24 rounded"/>
                 </div>
                 <div class="flex flex-col gap-3 max-w-4xl">
-                    <div class="skeleton h-6 w-48 rounded"></div>
-                    <div class="skeleton h-4 w-full rounded"></div>
-                    <div class="skeleton h-4 w-full rounded"></div>
-                    <div class="skeleton h-4 w-3/4 rounded"></div>
+                    <div class="skeleton h-6 w-48 rounded"/>
+                    <div class="skeleton h-4 w-full rounded"/>
+                    <div class="skeleton h-4 w-full rounded"/>
+                    <div class="skeleton h-4 w-3/4 rounded"/>
                 </div>
             </div>
         </section>

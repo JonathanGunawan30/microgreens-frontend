@@ -9,25 +9,13 @@
                                 <li class="inline-block text-green-600 mr-2">
                                     <NuxtLink to="/">
                                         Home
-                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                            class="icon icon-tabler icon-tabler-chevron-right inline-block" width="14"
-                                            height="14" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M9 6l6 6l-6 6" />
-                                        </svg>
+                                        <Icon name="tabler:chevron-right" size="14" class="inline-block" />
                                     </NuxtLink>
                                 </li>
                                 <li class="inline-block text-green-600 mr-2">
                                     <NuxtLink to="/shop">
                                         Shop
-                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                            class="icon icon-tabler icon-tabler-chevron-right inline-block" width="14"
-                                            height="14" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M9 6l6 6l-6 6" />
-                                        </svg>
+                                        <Icon name="tabler:chevron-right" size="14" class="inline-block" />
                                     </NuxtLink>
                                 </li>
                                 <li class="inline-block text-gray-500 active" aria-current="page">{{ selectedCategory?.name || 'All Products' }}</li>
@@ -41,18 +29,13 @@
             <div class="container">
                 <div class="flex lg:gap-8">
                     <aside class="lg:w-1/4 mb-6 md:">
-                        <div class="offcanvas offcanvas-left offcanvas-collapse" tabindex="-1" id="offcanvasCategory"
+                        <div
+id="offcanvasCategory" class="offcanvas offcanvas-left offcanvas-collapse" tabindex="-1"
                         aria-labelledby="offcanvasCategoryLabel">
                             <div class="lg:invisible lg:hidden flex items-center p-4 justify-between">
-                                <h5 class="offcanvas-title" id="offcanvasCategoryLabel">Filter</h5>
+                                <h5 id="offcanvasCategoryLabel" class="offcanvas-title">Filter</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x text-gray-700" width="24"
-                                    height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M18 6l-12 12"></path>
-                                    <path d="M6 6l12 12"></path>
-                                </svg>
+                                    <Icon name="tabler:x" size="24" class="text-gray-700" />
                                 </button>
                             </div>
                             <div class="offcanvas-body flex flex-col gap-8">
@@ -60,11 +43,12 @@
                                     <h5>Categories</h5>
                                     
                                     <div v-if="loadingCategories" class="flex flex-col gap-2">
-                                        <div v-for="n in 6" :key="n" class="h-6 bg-gray-200 rounded animate-pulse w-full"></div>
+                                        <div v-for="n in 6" :key="n" class="h-6 bg-gray-200 rounded animate-pulse w-full"/>
                                     </div>
 
                                     <ul v-else class="flex flex-wrap nav-category">
-                                        <CategoryMenuItem  v-for="(category, index) in categories" 
+                                        <CategoryMenuItem
+v-for="(category, index) in categories" 
                                             :key="index"
                                             :category="category"
                                             :is-active="categoryFilter === category.slug"
@@ -75,7 +59,7 @@
                                 <div class="flex flex-col gap-3">
                                     <h5 class="font-bold text-gray-900">Price</h5>
                                     <div class="px-2 pt-3 pb-2">
-                                        <div ref="priceRangeRef" class="custom-slider"></div>
+                                        <div ref="priceRangeRef" class="custom-slider"/>
                                     </div>
                                     <div class="flex flex-row gap-2 items-center mt-1">
                                         <span class="text-gray-800 text-sm">Price:</span>
@@ -89,12 +73,7 @@
                                         <p class="text-gray-700 text-sm mb-4">Get Upto 25% Off</p>
                                         <a role="button" tabindex="0" href="#" class="btn bg-gray-900 text-white hover:bg-gray-800 border-none inline-flex items-center gap-1 text-sm py-2 px-4 rounded-md">
                                             Shop Now
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                <path d="M5 12l14 0"></path>
-                                                <path d="M13 18l6 -6"></path>
-                                                <path d="M13 6l6 6"></path>
-                                            </svg>
+                                            <Icon name="tabler:arrow-narrow-right" size="14" />
                                         </a>
                                     </div>
                                     <NuxtImg src="/images/banner/assortment-citrus-fruits.png" alt="Fresh Fruits Banner" class="w-full h-auto rounded-lg object-cover" />
@@ -119,29 +98,28 @@
                                 
                                 <div class="flex items-center gap-2 md:hidden">
                                     <button 
-                                        @click="gridCols = 1" 
-                                        :class="gridCols === 1 ? 'text-green-600 bg-green-50' : 'text-gray-400 bg-gray-50'"
+                                        :class="gridCols === 1 ? 'text-green-600 bg-green-50' : 'text-gray-400 bg-gray-50'" 
                                         class="p-1.5 rounded border border-gray-200"
+                                        @click="gridCols = 1"
                                     >
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="3" x2="15" y2="21"></line></svg>
+                                        <Icon name="tabler:list" size="18" />
                                     </button>
                                     <button 
-                                        @click="gridCols = 2" 
-                                        :class="gridCols === 2 ? 'text-green-600 bg-green-50' : 'text-gray-400 bg-gray-50'"
+                                        :class="gridCols === 2 ? 'text-green-600 bg-green-50' : 'text-gray-400 bg-gray-50'" 
                                         class="p-1.5 rounded border border-gray-200"
+                                        @click="gridCols = 2"
                                     >
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                                        <Icon name="tabler:layout-grid" size="18" />
                                     </button>
                                 </div>
                             </div>
                             <div class="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-hide">
                                 <div class="lg:hidden flex-shrink-0">
-                                    <a class="btn inline-flex items-center gap-x-2 bg-white text-gray-800 border-gray-300 border py-2 px-3 text-sm hover:bg-gray-50"
+                                    <a
+class="btn inline-flex items-center gap-x-2 bg-white text-gray-800 border-gray-300 border py-2 px-3 text-sm hover:bg-gray-50"
                                         data-bs-toggle="offcanvas" href="#offcanvasCategory" role="button"
                                         aria-controls="offcanvasCategory">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M4 4h16v2.172a2 2 0 0 1 -.586 1.414l-4.414 4.414v7l-6 2v-8.5l-4.48 -4.928a2 2 0 0 1 -.52 -1.345v-2.227z"></path>
-                                        </svg>
+                                        <Icon name="tabler:filter" size="16" />
                                         Filters
                                     </a>
                                 </div>
@@ -149,8 +127,8 @@
                                 <div class="flex-shrink-0 min-w-[100px]">
                                     <select
                                         v-model="limit"
-                                        @change="handleFilterChange"
-                                        class="text-sm py-2 block w-full border-gray-300 rounded-lg focus:border-green-600 focus:ring-green-600">
+                                        class="text-sm py-2 block w-full border-gray-300 rounded-lg focus:border-green-600 focus:ring-green-600"
+                                        @change="handleFilterChange">
                                         <option :value="10">Show: 10</option>
                                         <option :value="20">Show: 20</option>
                                         <option :value="30">Show: 30</option>
@@ -160,8 +138,8 @@
                                 <div class="flex-shrink-0 min-w-[120px]">
                                     <select
                                         v-model="sort"
-                                        @change="handleFilterChange"
-                                        class="text-sm py-2 block w-full border-gray-300 rounded-lg focus:border-green-600 focus:ring-green-600">
+                                        class="text-sm py-2 block w-full border-gray-300 rounded-lg focus:border-green-600 focus:ring-green-600"
+                                        @change="handleFilterChange">
                                         <option value="">Sort: Featured</option>
                                         <option value="price_asc">Price: Low</option>
                                         <option value="price_desc">Price: High</option>
@@ -175,12 +153,12 @@
                             <div v-for="n in (limit || 10)" :key="n" class="col">
                                 <div class="card-product card h-100 border border-gray-200 bg-white animate-pulse">
                                     <div class="card-body p-3 flex flex-col h-full">
-                                        <div class="rounded-lg bg-gray-200 mb-3 w-full" style="aspect-ratio: 1/1;"></div>
-                                        <div class="h-3 bg-gray-200 rounded w-1/3 mb-2"></div>
-                                        <div class="h-4 bg-gray-200 rounded w-4/5 mb-3 flex-grow"></div>
+                                        <div class="rounded-lg bg-gray-200 mb-3 w-full" style="aspect-ratio: 1/1;"/>
+                                        <div class="h-3 bg-gray-200 rounded w-1/3 mb-2"/>
+                                        <div class="h-4 bg-gray-200 rounded w-4/5 mb-3 flex-grow"/>
                                         <div class="flex justify-between items-center mt-auto">
-                                            <div class="h-4 bg-gray-200 rounded w-16"></div>
-                                            <div class="h-8 bg-gray-200 rounded-lg w-16"></div>
+                                            <div class="h-4 bg-gray-200 rounded w-16"/>
+                                            <div class="h-8 bg-gray-200 rounded-lg w-16"/>
                                         </div>
                                     </div>
                                 </div>
@@ -210,10 +188,7 @@
 
                                             <div class="quick-view-overlay">
                                                 <button class="btn-quick-view" @click="showQuickView(product)">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="15" height="15" fill="currentColor">
-                                                        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.19 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
-                                                        <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
-                                                    </svg>
+                                                    <Icon name="tabler:eye" size="15" />
                                                     <span>Quick View</span>
                                                 </button>
                                             </div>
@@ -235,10 +210,7 @@
                                                 </div>
                                                 
                                                 <button class="btn-add" @click="showQuickView(product)">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                                        <line x1="12" y1="5" x2="12" y2="19"/>
-                                                        <line x1="5" y1="12" x2="19" y2="12"/>
-                                                    </svg>
+                                                    <Icon name="tabler:plus" size="14" stroke-width="3" />
                                                     Add
                                                 </button>
                                             </div>
@@ -256,42 +228,33 @@
 
                         <div v-if="!loading && paginateProds.total_page > 1" class="flex my-8">
                             <nav class="flex items-center gap-x-1">
-                                <button type="button"
+                                <button
+type="button"
                                     :disabled="paginateProds.page === 1"
-                                    @click="handlePageChange(paginateProds.page - 1)"
-                                    class="leading-none min-h-[36px] min-w-[36px] py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 rounded-md border bg-white border-gray-300 text-gray-800 hover:bg-gray-300 focus:outline-none focus:bg-gray-300 disabled:opacity-50 disabled:pointer-events-none">
-                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                        class="icon icon-tabler icon-tabler-chevron-left" width="16" height="16"
-                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                        stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                        <path d="M15 6l-6 6l6 6"></path>
-                                    </svg>
+                                    class="leading-none min-h-[36px] min-w-[36px] py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 rounded-md border bg-white border-gray-300 text-gray-800 hover:bg-gray-300 focus:outline-none focus:bg-gray-300 disabled:opacity-50 disabled:pointer-events-none"
+                                    @click="handlePageChange(paginateProds.page - 1)">
+                                    <Icon name="tabler:chevron-left" size="16" />
                                 </button>
                                 <div class="flex items-center gap-x-1">
-                                    <button v-for="page in paginateProds.total_page" 
+                                    <button
+v-for="page in paginateProds.total_page" 
                                         :key="page"
-                                        @click="handlePageChange(page)"
                                         :class="[
                                             'leading-none min-h-[36px] min-w-[36px] py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 rounded-md border',
                                             page === paginateProds.page 
                                                 ? 'text-white border bg-green-600 border-green-600 hover:bg-green-600 focus:outline-none focus:bg-green-600'
                                                 : 'bg-white border-gray-300 text-gray-800 hover:bg-gray-300 focus:outline-none focus:bg-gray-300'
-                                        ]">
+                                        ]"
+                                        @click="handlePageChange(page)">
                                         {{ page }}
                                     </button>
                                 </div>
-                                <button type="button"
+                                <button
+type="button"
                                     :disabled="paginateProds.page === paginateProds.total_page"
-                                    @click="handlePageChange(paginateProds.page + 1)"
-                                    class="leading-none min-h-[36px] min-w-[36px] py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 rounded-md border bg-white border-gray-300 text-gray-800 hover:bg-gray-300 focus:outline-none focus:bg-gray-300 disabled:opacity-50 disabled:pointer-events-none">
-                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                        class="icon icon-tabler icon-tabler-chevron-right" width="16" height="16"
-                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                        stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                        <path d="M9 6l6 6l-6 6"></path>
-                                    </svg>
+                                    class="leading-none min-h-[36px] min-w-[36px] py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 rounded-md border bg-white border-gray-300 text-gray-800 hover:bg-gray-300 focus:outline-none focus:bg-gray-300 disabled:opacity-50 disabled:pointer-events-none"
+                                    @click="handlePageChange(paginateProds.page + 1)">
+                                    <Icon name="tabler:chevron-right" size="16" />
                                 </button>
                             </nav>
                         </div>
@@ -452,12 +415,9 @@ const formatPrice = (price) => {
 
 useHead({
     script: [
-        { src: '/js/vendors/zoom.js', body: true },
         { src: '/js/theme.min.js', body: true },
-        { src: '/js/vendors/countdown.js', body: true },
     ],
-})
-</script>
+})</script>
 
 <style scoped>
 .scrollbar-hide::-webkit-scrollbar {

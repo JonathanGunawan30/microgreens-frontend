@@ -21,11 +21,7 @@
       href="/" 
       class="mt-8 inline-flex items-center gap-2 bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition font-semibold"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M5 12l14 0"/>
-        <path d="M5 12l6 6"/>
-        <path d="M5 12l6 -6"/>
-      </svg>
+      <Icon name="tabler:arrow-left" size="16" />
       Back to Home
     </a>
   </div>

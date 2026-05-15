@@ -9,13 +9,7 @@
               <li class="inline-block text-green-600">
                 <a href="/dashboard">
                   Dashboard
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="icon icon-tabler icons-tabler-outline icon-tabler-slash inline-block mx-2">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M17 5l-10 14" />
-                  </svg>
+                  <Icon name="tabler:slash" size="14" class="icon icon-tabler icons-tabler-outline icon-tabler-slash inline-block mx-2" />
                 </a>
               </li>
 
@@ -24,7 +18,8 @@
           </nav>
         </div>
         <div class="mt-3 lg:mt-0">
-          <a href="/dashboard/customers/create"
+          <a
+href="/dashboard/customers/create"
             class="btn inline-flex items-center gap-x-2 bg-green-600 text-white border-green-600 disabled:opacity-50 disabled:pointer-events-none hover:text-white hover:bg-green-700 hover:border-green-700 active:bg-green-700 active:border-green-700 focus:outline-none focus:ring-4 focus:ring-green-100">
             Add New Customer
           </a>
@@ -39,9 +34,9 @@
               <form class="flex" role="search" @submit.prevent>
                 <input
                   v-model="searchFilter"
-                  @input="handleSearch"
                   class="border border-gray-300 text-gray-900 rounded-lg focus:shadow-[0_0_0_.25rem_rgba(10,173,10,.25)] focus:ring-green-600 focus:ring-0 focus:border-green-600 block p-2 px-3 disabled:opacity-50 disabled:pointer-events-none w-full text-base"
-                  type="search" placeholder="Search Customers" aria-label="Search" />
+                  type="search"
+                  placeholder="Search Customers" aria-label="Search" @input="handleSearch" >
               </form>
             </div>
           </div>
@@ -54,7 +49,7 @@
                   <th scope="col" class="px-6 py-3">Name</th>
                   <th scope="col" class="px-24 py-3">Email</th>
                   <th scope="col" class="px-6 py-3">Phone</th>
-                  <th scope="col" class="px-6 py-3"></th>
+                  <th scope="col" class="px-6 py-3"/>
                 </tr>
               </thead>
               <tbody>
@@ -67,10 +62,10 @@
                 <tr v-else-if="!customers || customers.length === 0">
                     <td colspan="4" class="text-center py-4 text-gray-500">No data available</td>
                 </tr>
-                <tr v-else v-for="item in customers" :key="item.id">
+                <tr v-for="item in customers" v-else :key="item.id">
                   <td class="py-3 px-6 text-left">
                     <div class="flex items-center gap-3">
-                      <img :src="item.photo" alt="" class="h-8 w-8 rounded-full object-cover" />
+                      <img :src="item.photo" alt="" class="h-8 w-8 rounded-full object-cover" >
                       <span>{{ item.customer_name || item.name }}</span>
                     </div>
                   </td>
@@ -79,32 +74,15 @@
 
                   <td class="py-3 px-6 text-left">
                     <div class="dropdown dropup-center">
-                      <a href="#" class="text-inherit" data-bs-toggle="dropdown"
+                      <a
+href="#" class="text-inherit" data-bs-toggle="dropdown"
                         aria-expanded="false" data-bs-boundary="window">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20"
-                          height="20" viewBox="0 0 24 24" fill="none"
-                          stroke="currentColor" stroke-width="2"
-                          stroke-linecap="round" stroke-linejoin="round"
-                          class="icon icon-tabler icons-tabler-outline icon-tabler-dots-vertical">
-                          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                          <path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-                          <path d="M12 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-                          <path d="M12 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-                        </svg>
+                        <Icon name="tabler:dots-vertical" size="20" class="icon icon-tabler icons-tabler-outline icon-tabler-dots-vertical" />
                       </a>
                       <ul class="dropdown-menu dropdown-menu-end shadow-sm">
                         <li>
                           <NuxtLink class="dropdown-item" :to="`/dashboard/customers/edit/${item.id}`">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14"
-                              height="14" viewBox="0 0 24 24" fill="none"
-                              stroke="currentColor" stroke-width="2"
-                              stroke-linecap="round" stroke-linejoin="round"
-                              class="icon icon-tabler icons-tabler-outline icon-tabler-edit">
-                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                              <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
-                              <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
-                              <path d="M16 5l3 3" />
-                            </svg>
+                            <Icon name="tabler:edit" size="14" class="icon icon-tabler icons-tabler-outline icon-tabler-edit" />
                             Edit
                           </NuxtLink>
                         </li>
@@ -121,15 +99,15 @@
           <nav class="flex items-center gap-x-1">
             <button
               :disabled="pagination.page === 1"
-              @click="handlePageChange(pagination.page - 1)"
               type="button"
               class="leading-none min-h-[36px] min-w-[36px] py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 rounded-md border bg-white border-gray-300 text-gray-800 hover:bg-gray-300 focus:outline-none focus:bg-gray-300 disabled:opacity-50 disabled:pointer-events-none"
+              @click="handlePageChange(pagination.page - 1)"
               >
               Previous
             </button>
             <div class="flex items-center gap-x-1">
-              <button v-for="page in pagination.total_page" :key="page"
-                @click="handlePageChange(page)"
+              <button
+v-for="page in pagination.total_page" :key="page"
                 type="button"
                 :class="[
                     'leading-none min-h-[36px] min-w-[36px] py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 rounded-md border',
@@ -137,15 +115,16 @@
                         ? 'text-white border bg-green-600 border-green-600 hover:bg-green-600 focus:outline-none focus:bg-green-600'
                         : 'bg-white border-gray-300 text-gray-800 hover:bg-gray-300 focus:outline-none focus:bg-gray-300'
                 ]"
-                aria-current="page">
+                aria-current="page"
+                @click="handlePageChange(page)">
                 {{ page }}
               </button>
             </div>
             <button
               :disabled="pagination.page === pagination.total_page"
-              @click="handlePageChange(pagination.page + 1)"
               type="button"
-              class="leading-none min-h-[36px] min-w-[36px] py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 rounded-md border bg-white border-gray-300 text-gray-800 hover:bg-gray-300 focus:outline-none focus:bg-gray-300 disabled:opacity-50 disabled:pointer-events-none">
+              class="leading-none min-h-[36px] min-w-[36px] py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 rounded-md border bg-white border-gray-300 text-gray-800 hover:bg-gray-300 focus:outline-none focus:bg-gray-300 disabled:opacity-50 disabled:pointer-events-none"
+              @click="handlePageChange(pagination.page + 1)">
               Next
             </button>
           </nav>

@@ -9,10 +9,7 @@
               <li class="inline-block text-green-600">
                 <a href="#!">
                   Dashboard
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-slash inline-block mx-2">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M17 5l-10 14" />
-                  </svg>
+                  <Icon name="tabler:slash" size="14" class="icon icon-tabler icons-tabler-outline icon-tabler-slash inline-block mx-2" />
                 </a>
               </li>
               <li class="inline-block text-gray-500 active" aria-current="page">Categories</li>
@@ -34,21 +31,16 @@
             <div class="lg:col-span-3 md:col-span-6 col-span-12">
               <input
                 v-model="searchFilter"
-                @input="handleSearchFilter"
                 class="border border-gray-300 text-gray-900 rounded-lg focus:shadow-[0_0_0_.25rem_rgba(10,173,10,.25)] focus:ring-green-600 focus:ring-0 focus:border-green-600 block p-2 px-3 w-full text-base"
-                type="search" placeholder="Search Categories" />
+                type="search"
+                placeholder="Search Categories" @input="handleSearchFilter" >
             </div>
             <div class="lg:col-span-9 md:col-span-6 col-span-12 flex justify-end">
               <button
                 v-if="selectedIds.length > 0"
-                @click="handleBulkDelete"
-                class="btn inline-flex items-center gap-x-2 bg-red-600 text-white border-red-600 hover:bg-red-700 hover:border-red-700 focus:outline-none focus:ring-4 focus:ring-red-100">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <path d="M4 7l16 0" /><path d="M10 11l0 6" /><path d="M14 11l0 6" />
-                  <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-                  <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-                </svg>
+                class="btn inline-flex items-center gap-x-2 bg-red-600 text-white border-red-600 hover:bg-red-700 hover:border-red-700 focus:outline-none focus:ring-4 focus:ring-red-100"
+                @click="handleBulkDelete">
+                <Icon name="tabler:trash" size="14" />
                 Delete Selected ({{ selectedIds.length }})
               </button>
             </div>
@@ -66,25 +58,25 @@
                         class="w-4 h-4 text-green-600 bg-white border-gray-300 rounded focus:ring-green-600 focus:outline-none focus:ring-2"
                         type="checkbox"
                         :checked="isAllSelected"
-                        @change="toggleSelectAll" />
+                        @change="toggleSelectAll" >
                     </div>
                   </th>
                   <th scope="col" class="px-6 py-3">Icon</th>
                   <th scope="col" class="px-6 py-3">Name</th>
                   <th scope="col" class="px-6 py-3">Total Product</th>
                   <th scope="col" class="px-6 py-3">Status</th>
-                  <th scope="col" class="px-6 py-3"></th>
+                  <th scope="col" class="px-6 py-3"/>
                 </tr>
               </thead>
               <tbody class="divide-y">
                 <template v-if="loading">
                   <tr v-for="n in 6" :key="n" class="border-transparent !border-b-0 animate-pulse">
-                    <td class="py-3 px-6"><div class="w-4 h-4 bg-gray-200 rounded"></div></td>
-                    <td class="py-3 px-6"><div class="w-12 h-12 bg-gray-200 rounded-lg"></div></td>
-                    <td class="py-3 px-6"><div class="h-4 bg-gray-200 rounded w-32"></div></td>
-                    <td class="py-3 px-6"><div class="h-4 bg-gray-200 rounded w-12"></div></td>
-                    <td class="py-3 px-6"><div class="h-6 bg-gray-200 rounded w-20"></div></td>
-                    <td class="py-3 px-6"><div class="h-4 bg-gray-200 rounded w-6"></div></td>
+                    <td class="py-3 px-6"><div class="w-4 h-4 bg-gray-200 rounded"/></td>
+                    <td class="py-3 px-6"><div class="w-12 h-12 bg-gray-200 rounded-lg"/></td>
+                    <td class="py-3 px-6"><div class="h-4 bg-gray-200 rounded w-32"/></td>
+                    <td class="py-3 px-6"><div class="h-4 bg-gray-200 rounded w-12"/></td>
+                    <td class="py-3 px-6"><div class="h-6 bg-gray-200 rounded w-20"/></td>
+                    <td class="py-3 px-6"><div class="h-4 bg-gray-200 rounded w-6"/></td>
                   </tr>
                 </template>
                 <tr v-else-if="error">
@@ -93,21 +85,22 @@
                 <tr v-else-if="categoryDatas.length === 0">
                   <td colspan="6" class="text-center py-8 text-gray-400">No categories found.</td>
                 </tr>
-                <tr v-else v-for="item in categoryDatas" :key="item.id" class="border-transparent !border-b-0">
+                <tr v-for="item in categoryDatas" v-else :key="item.id" class="border-transparent !border-b-0">
                   <td class="py-3 px-6">
                     <input
+                      v-model="selectedIds"
                       class="w-4 h-4 text-green-600 bg-white border-gray-300 rounded focus:ring-green-600 focus:outline-none focus:ring-2"
                       type="checkbox"
-                      :value="item.id"
-                      v-model="selectedIds" />
+                      :value="item.id" >
                   </td>
                   <td class="py-3 px-6">
-                    <img :src="item.icon" alt="" class="h-12 w-12 object-contain rounded" />
+                    <img :src="item.icon" alt="" class="h-12 w-12 object-contain rounded" >
                   </td>
                   <td class="py-3 px-6">{{ item.name }}</td>
                   <td class="py-3 px-6">{{ item.total_product }}</td>
                   <td class="py-3 px-6">
-                    <span class="inline-block p-1 text-sm align-baseline leading-none rounded border font-semibold"
+                    <span
+class="inline-block p-1 text-sm align-baseline leading-none rounded border font-semibold"
                       :class="item.status === 'Published'
                         ? 'bg-green-100 text-green-800 border-green-200'
                         : 'bg-red-100 text-red-800 border-red-200'">
@@ -117,33 +110,18 @@
                   <td class="py-3 px-6">
                     <div class="dropdown dropup-center">
                       <a href="#" class="text-inherit" data-bs-toggle="dropdown" aria-expanded="false">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                          <path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-                          <path d="M12 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-                          <path d="M12 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-                        </svg>
+                        <Icon name="tabler:dots-vertical" size="20" />
                       </a>
                       <ul class="dropdown-menu">
                         <li>
-                          <a @click.prevent="handleDelete(item.id)" class="dropdown-item" href="#">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block mr-1">
-                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                              <path d="M4 7l16 0" /><path d="M10 11l0 6" /><path d="M14 11l0 6" />
-                              <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-                              <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-                            </svg>
+                          <a class="dropdown-item" href="#" @click.prevent="handleDelete(item.id)">
+                            <Icon name="tabler:trash" size="14" class="inline-block mr-1" />
                             Delete
                           </a>
                         </li>
                         <li>
                           <NuxtLink class="dropdown-item" :to="`/dashboard/categories/edit/${item.id}`">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block mr-1">
-                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                              <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
-                              <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
-                              <path d="M16 5l3 3" />
-                            </svg>
+                            <Icon name="tabler:edit" size="14" class="inline-block mr-1" />
                             Edit
                           </NuxtLink>
                         </li>
@@ -161,30 +139,30 @@
           <nav class="flex items-center gap-x-1">
             <button
               :disabled="paginateProds.page === 1"
-              @click="handlePageChange(paginateProds.page - 1)"
               type="button"
-              class="leading-none min-h-[36px] min-w-[36px] py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 rounded-md border bg-white border-gray-300 text-gray-800 hover:bg-gray-300 focus:outline-none focus:bg-gray-300 disabled:opacity-50 disabled:pointer-events-none">
+              class="leading-none min-h-[36px] min-w-[36px] py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 rounded-md border bg-white border-gray-300 text-gray-800 hover:bg-gray-300 focus:outline-none focus:bg-gray-300 disabled:opacity-50 disabled:pointer-events-none"
+              @click="handlePageChange(paginateProds.page - 1)">
               Previous
             </button>
             <div class="flex items-center gap-x-1">
               <button
                 v-for="page in paginateProds.total_page" :key="page"
-                @click="handlePageChange(page)"
                 type="button"
                 :class="[
                   'leading-none min-h-[36px] min-w-[36px] py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 rounded-md border',
                   page === paginateProds.page
                     ? 'text-white border bg-green-600 border-green-600'
                     : 'bg-white border-gray-300 text-gray-800 hover:bg-gray-300'
-                ]">
+                ]"
+                @click="handlePageChange(page)">
                 {{ page }}
               </button>
             </div>
             <button
               :disabled="paginateProds.page === paginateProds.total_page"
-              @click="handlePageChange(paginateProds.page + 1)"
               type="button"
-              class="leading-none min-h-[36px] min-w-[36px] py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 rounded-md border bg-white border-gray-300 text-gray-800 hover:bg-gray-300 focus:outline-none focus:bg-gray-300 disabled:opacity-50 disabled:pointer-events-none">
+              class="leading-none min-h-[36px] min-w-[36px] py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 rounded-md border bg-white border-gray-300 text-gray-800 hover:bg-gray-300 focus:outline-none focus:bg-gray-300 disabled:opacity-50 disabled:pointer-events-none"
+              @click="handlePageChange(paginateProds.page + 1)">
               Next
             </button>
           </nav>

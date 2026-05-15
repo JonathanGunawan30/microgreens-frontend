@@ -10,8 +10,8 @@
         
         <button 
           v-if="unreadCount > 0"
-          @click="markAllAsRead" 
-          class="text-sm font-semibold text-green-600 hover:text-green-700 bg-green-50 hover:bg-green-100 px-4 py-2.5 rounded-lg transition-colors flex items-center gap-2 border border-green-100"
+          class="text-sm font-semibold text-green-600 hover:text-green-700 bg-green-50 hover:bg-green-100 px-4 py-2.5 rounded-lg transition-colors flex items-center gap-2 border border-green-100" 
+          @click="markAllAsRead"
         >
           <Icon name="tabler:checks" size="18" />
           Mark all as read
@@ -21,7 +21,7 @@
       <div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
         
         <div v-if="loading" class="text-center py-20">
-          <div class="animate-spin rounded-full h-10 w-10 border-b-2 border-green-600 mx-auto"></div>
+          <div class="animate-spin rounded-full h-10 w-10 border-b-2 border-green-600 mx-auto"/>
           <p class="text-gray-500 mt-4 text-sm font-medium">Loading notifications...</p>
         </div>
 
@@ -43,13 +43,15 @@
         </div>
 
         <div v-else class="divide-y divide-gray-100">
-          <div v-for="notif in notifications" :key="notif.id" @click="openNotif(notif)" 
-               :class="[
+          <div
+v-for="notif in notifications" :key="notif.id" :class="[
                  'cursor-pointer p-6 transition-all hover:bg-gray-50 flex gap-5 items-start relative',
                  !notif.read_at ? 'bg-green-50/20' : 'bg-white'
-               ]">
+               ]" 
+               @click="openNotif(notif)">
             
-            <div :class="[
+            <div
+:class="[
               'w-12 h-12 rounded-xl flex items-center justify-center shrink-0 mt-0.5 shadow-sm border',
               !notif.read_at ? 'bg-green-100 text-green-600 border-green-200' : 'bg-gray-100 text-gray-400 border-gray-200'
             ]">
@@ -73,7 +75,7 @@
               </p>
             </div>
             
-            <div v-if="!notif.read_at" class="absolute left-0 top-0 bottom-0 w-1 bg-green-600"></div>
+            <div v-if="!notif.read_at" class="absolute left-0 top-0 bottom-0 w-1 bg-green-600"/>
           </div>
         </div>
       </div>
@@ -86,9 +88,9 @@
         <nav class="flex items-center gap-x-1">
           <button 
             :disabled="pagination.page === 1"
-            @click="fetchData(pagination.page - 1)"
             type="button"
-            class="leading-none min-h-[38px] min-w-[38px] py-2 px-3 inline-flex justify-center items-center gap-x-1.5 rounded-lg border bg-white border-gray-300 text-gray-700 hover:bg-gray-50 disabled:opacity-50 transition-colors font-medium">
+            class="leading-none min-h-[38px] min-w-[38px] py-2 px-3 inline-flex justify-center items-center gap-x-1.5 rounded-lg border bg-white border-gray-300 text-gray-700 hover:bg-gray-50 disabled:opacity-50 transition-colors font-medium"
+            @click="fetchData(pagination.page - 1)">
             <Icon name="tabler:chevron-left" size="18" />
             Prev
           </button>
@@ -98,20 +100,20 @@
             
             <button 
               v-else
-              @click="fetchData(page)"
               :class="[
                 'leading-none min-h-[38px] min-w-[38px] py-2 px-3 inline-flex justify-center items-center rounded-lg border font-bold transition-all',
                 page === pagination.page ? 'text-white bg-green-600 border-green-600 shadow-sm shadow-green-200 scale-105' : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400'
-              ]">
+              ]"
+              @click="fetchData(page)">
               {{ page }}
             </button>
           </template>
 
           <button
             :disabled="pagination.page === pagination.total_page"
-            @click="fetchData(page + 1)"
             type="button"
-            class="leading-none min-h-[38px] min-w-[38px] py-2 px-3 inline-flex justify-center items-center gap-x-1.5 rounded-lg border bg-white border-gray-300 text-gray-700 hover:bg-gray-50 disabled:opacity-50 transition-colors font-medium">
+            class="leading-none min-h-[38px] min-w-[38px] py-2 px-3 inline-flex justify-center items-center gap-x-1.5 rounded-lg border bg-white border-gray-300 text-gray-700 hover:bg-gray-50 disabled:opacity-50 transition-colors font-medium"
+            @click="fetchData(page + 1)">
             Next
             <Icon name="tabler:chevron-right" size="18" />
           </button>
@@ -121,7 +123,8 @@
     </div>
 
     <!-- Notif Modal -->
-    <div v-if="selectedNotif" 
+    <div
+v-if="selectedNotif" 
         class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9999] flex items-center justify-center p-4"
         @click.self="selectedNotif = null">
       <div class="bg-white rounded-2xl border border-gray-200 w-full max-w-md overflow-hidden shadow-2xl transition-all transform animate-in fade-in zoom-in duration-200">
@@ -136,7 +139,7 @@
               <p class="text-[9px] text-gray-400 uppercase font-bold tracking-wider mb-0">{{ formatDate(selectedNotif.send_at) }}</p>
             </div>
           </div>
-          <button @click="selectedNotif = null" class="w-7 h-7 rounded-full hover:bg-gray-200 flex items-center justify-center text-gray-400 hover:text-gray-600 transition-colors">
+          <button class="w-7 h-7 rounded-full hover:bg-gray-200 flex items-center justify-center text-gray-400 hover:text-gray-600 transition-colors" @click="selectedNotif = null">
             <Icon name="tabler:x" size="18" />
           </button>
         </div>
@@ -148,8 +151,9 @@
         </div>
 
         <div class="px-5 py-3 border-t border-gray-100 bg-gray-50/50 flex justify-end">
-          <button @click="selectedNotif = null" 
-                  class="text-xs font-bold px-5 py-2 rounded-lg border border-gray-300 text-gray-600 bg-white hover:bg-gray-100 transition-all">
+          <button
+class="text-xs font-bold px-5 py-2 rounded-lg border border-gray-300 text-gray-600 bg-white hover:bg-gray-100 transition-all" 
+                  @click="selectedNotif = null">
             Dismiss
           </button>
         </div>

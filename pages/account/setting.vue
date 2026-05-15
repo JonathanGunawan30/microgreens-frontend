@@ -11,9 +11,7 @@
                             class="btn inline-flex items-center gap-x-2 bg-transparent text-gray-600 border-gray-300 disabled:opacity-50 disabled:pointer-events-none hover:text-white hover:bg-gray-700 hover:border-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 md:hidden btn-sm ms-3"
                             type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAccount"
                             aria-controls="offcanvasAccount">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M20 6l-11 0" /><path d="M20 12l-7 0" /><path d="M20 18l-11 0" /><path d="M4 8l4 4l-4 4" />
-                            </svg>
+                            <Icon name="tabler:menu-2" size="24" />
                         </button>
                     </div>
                 </div>
@@ -23,32 +21,28 @@
                         <ul class="nav flex-col nav-pills nav-pills-dark">
                             <li class="nav-item">
                                 <NuxtLink class="nav-link gap-2" to="/account">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M6.331 8h11.339a2 2 0 0 1 1.977 2.304l-1.255 8.152a3 3 0 0 1 -2.966 2.544h-6.852a3 3 0 0 1 -2.965 -2.544l-1.255 -8.152a2 2 0 0 1 1.977 -2.304z" /><path d="M9 11v-5a3 3 0 0 1 6 0v5" /></svg>
+                                    <Icon name="tabler:shopping-bag" size="18" />
                                     Your Orders
                                 </NuxtLink>
                             </li>
                             <li class="nav-item">
                                 <NuxtLink class="nav-link gap-2 justify-between" to="/account/notifications">
                                     <div class="flex items-center gap-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-bell">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                        <path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
-                                        <path d="M9 17v1a3 3 0 0 0 6 0v-1" />
-                                    </svg>
+                                    <Icon name="tabler:bell" size="18" class="icon icon-tabler icons-tabler-outline icon-tabler-bell" />
                                     Notifications
                                     </div>
                                 </NuxtLink>
                             </li>
                             <li class="nav-item">
                                 <NuxtLink class="nav-link active gap-2" aria-current="page" to="/account/setting">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" /><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /></svg>
+                                    <Icon name="tabler:settings" size="18" />
                                     Settings
                                 </NuxtLink>
                             </li>
-                            <li class="nav-item"><hr class="pt-3 mt-5" /></li>
+                            <li class="nav-item"><hr class="pt-3 mt-5" ></li>
                             <li class="nav-item">
                                 <button type="button" class="nav-link gap-2" @click="handleLogout">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" /><path d="M9 12h12l-3 -3" /><path d="M18 15l3 -3" /></svg>
+                                    <Icon name="tabler:logout" size="18" />
                                     Log out
                                 </button>
                             </li>
@@ -71,14 +65,14 @@
                                         
                                         <div class="mb-6 flex items-center gap-5 p-4 border border-gray-200 rounded-lg bg-gray-50">
                                             <div class="relative w-20 h-20 rounded-full overflow-hidden border-2 border-green-600 bg-white flex-shrink-0">
-                                                <img v-if="photoPreview || formData.photo" :src="photoPreview || formData.photo" class="w-full h-full object-cover" alt="Profile" />
+                                                <img v-if="photoPreview || formData.photo" :src="photoPreview || formData.photo" class="w-full h-full object-cover" alt="Profile" >
                                                 <div v-else class="w-full h-full flex items-center justify-center text-gray-400">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" /><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /></svg>
+                                                    <Icon name="tabler:user" size="32" />
                                                 </div>
                                             </div>
                                             <div>
-                                                <input type="file" ref="fileInput" @change="handleFileChange" accept="image/*" class="hidden" />
-                                                <button type="button" @click="$refs.fileInput.click()" class="btn btn-sm bg-white border border-gray-300 text-gray-700 hover:bg-gray-100 transition">
+                                                <input ref="fileInput" type="file" accept="image/*" class="hidden" @change="handleFileChange" >
+                                                <button type="button" class="btn btn-sm bg-white border border-gray-300 text-gray-700 hover:bg-gray-100 transition" @click="$refs.fileInput.click()">
                                                     Change Photo
                                                 </button>
                                                 <p class="text-xs text-gray-500 mt-2">JPG, JPEG or PNG. Max size of 2MB.</p>
@@ -87,62 +81,67 @@
 
                                         <div class="mb-3">
                                             <label class="inline-block text-gray-800 font-medium mb-2">Name</label>
-                                            <input v-model="formData.name" type="text"
+                                            <input
+v-model="formData.name" type="text"
                                                 class="border border-gray-300 text-gray-900 rounded-lg focus:ring-green-600 focus:border-green-600 block p-2 px-3 w-full text-base"
-                                                placeholder="Enter your name" required />
+                                                placeholder="Enter your name" required >
                                         </div>
                                         <div class="mb-3">
                                             <label class="inline-block text-gray-800 font-medium mb-2">Email</label>
-                                            <input v-model="formData.email" type="email"
+                                            <input
+v-model="formData.email" type="email"
                                                 class="border border-gray-300 text-gray-900 bg-gray-50 rounded-lg focus:ring-green-600 focus:border-green-600 block p-2 px-3 w-full text-base"
-                                                placeholder="example@gmail.com" disabled />
+                                                placeholder="example@gmail.com" disabled >
                                                 <small class="text-gray-500">Email cannot be changed.</small>
                                         </div>
                                         <div class="mb-5">
                                             <label class="inline-block text-gray-800 font-medium mb-2">Phone</label>
-                                            <input v-model="formData.phone" type="text"
+                                            <input
+v-model="formData.phone" type="text"
                                                 class="border border-gray-300 text-gray-900 rounded-lg focus:ring-green-600 focus:border-green-600 block p-2 px-3 w-full text-base"
-                                                placeholder="Phone number" required />
+                                                placeholder="Phone number" required >
                                         </div>
 
                                         <div class="mb-5 p-5 border border-gray-200 rounded-lg bg-gray-50">
                                             <div class="flex justify-between items-center mb-3 flex-wrap gap-2">
                                                 <label class="inline-block text-gray-800 font-bold m-0">Delivery Address</label>
                                                 <div class="flex items-center gap-2">
-                                                    <button type="button" @click="openMapModal" class="btn btn-sm bg-gray-900 hover:bg-black/90 text-white border-none py-1.5 px-3 rounded inline-flex items-center gap-1 transition">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /><path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z" /></svg>
+                                                    <button type="button" class="btn btn-sm bg-gray-900 hover:bg-black/90 text-white border-none py-1.5 px-3 rounded inline-flex items-center gap-1 transition" @click="openMapModal">
+                                                        <Icon name="tabler:map-pin" size="16" />
                                                         Pick from Map
                                                     </button>
-                                                    <button type="button" @click="getCurrentLocation" :disabled="isLocating" class="btn btn-sm bg-white border border-gray-300 text-gray-700 hover:bg-gray-100 py-1.5 px-3 rounded inline-flex items-center gap-1 transition disabled:opacity-50">
-                                                        <svg v-if="isLocating" class="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
-                                                        <svg v-else xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M21 3l-6.5 18a.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a.55 .55 0 0 1 0 -1l18 -6.5" /></svg>
+                                                    <button type="button" :disabled="isLocating" class="btn btn-sm bg-white border border-gray-300 text-gray-700 hover:bg-gray-100 py-1.5 px-3 rounded inline-flex items-center gap-1 transition disabled:opacity-50" @click="getCurrentLocation">
+                                                        <Icon name="tabler:loader-2" size="16" class="animate-spin" v-if="isLocating" />
+                                                        <Icon v-else name="tabler:location" size="16" />
                                                         {{ isLocating ? 'Detecting...' : 'Current Location' }}
                                                     </button>
                                                 </div>
                                             </div>
                                             
-                                            <textarea v-model="formData.address" rows="3" required
+                                            <textarea
+v-model="formData.address" rows="3" required
                                                 class="border border-gray-300 text-gray-900 rounded-lg focus:ring-green-600 focus:border-green-600 block p-2 px-3 w-full text-base mb-3 shadow-sm"
-                                                placeholder="Enter your full address (e.g. Jl. Sudirman No 1, Jakarta)"></textarea>
+                                                placeholder="Enter your full address (e.g. Jl. Sudirman No 1, Jakarta)"/>
                                             
                                             <div class="flex justify-between items-center bg-white p-3 rounded border border-gray-200">
                                                 <div class="text-xs flex items-center gap-1.5">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" :class="formData.lat ? 'text-green-600' : 'text-gray-400'"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /><path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z" /></svg>
+                                                    <Icon name="tabler:map-pin" size="16" :class="formData.lat ? 'text-green-600' : 'text-gray-400'" />
                                                     <span v-if="formData.lat && formData.lng" class="text-green-700 font-semibold">
                                                         Lat: {{ Number(formData.lat).toFixed(5) }}, Lng: {{ Number(formData.lng).toFixed(5) }}
                                                     </span>
                                                     <span v-else class="text-gray-500">Coordinates not set</span>
                                                 </div>
                                                 
-                                                <button type="button" @click="syncAddressToMap" :disabled="isGeocoding || !formData.address" class="btn btn-sm bg-gray-100 hover:bg-gray-200 text-gray-700 border border-gray-300 text-xs py-1.5 px-3 rounded inline-flex items-center gap-1 transition disabled:opacity-50">
-                                                    <span v-if="isGeocoding" class="animate-spin h-3 w-3 border-2 border-gray-500 border-t-transparent rounded-full"></span>
+                                                <button type="button" :disabled="isGeocoding || !formData.address" class="btn btn-sm bg-gray-100 hover:bg-gray-200 text-gray-700 border border-gray-300 text-xs py-1.5 px-3 rounded inline-flex items-center gap-1 transition disabled:opacity-50" @click="syncAddressToMap">
+                                                    <span v-if="isGeocoding" class="animate-spin h-3 w-3 border-2 border-gray-500 border-t-transparent rounded-full"/>
                                                     <span>Find Coordinates</span>
                                                 </button>
                                             </div>
                                         </div>
                                         
                                         <div class="mb-3 mt-6">
-                                            <button :disabled="authStore.loading" type="submit"
+                                            <button
+:disabled="authStore.loading" type="submit"
                                                 class="btn inline-flex items-center justify-center gap-x-2 bg-green-600 text-white border-green-600 disabled:opacity-50 hover:bg-green-700 transition px-6">
                                                 <span v-if="authStore.loading">Saving...</span>
                                                 <span v-else>Save Details</span>
@@ -150,7 +149,7 @@
                                         </div>
                                     </form>
 
-                                    <hr class="my-10" />
+                                    <hr class="my-10" >
 
                                     <div class="mb-6">
                                         <h5 class="mb-4 text-gray-800 font-bold">Security</h5>
@@ -165,10 +164,11 @@
                                                         :type="showPassword.current ? 'text' : 'password'"
                                                         class="border border-gray-300 text-gray-900 rounded-lg focus:ring-green-600 focus:border-green-600 block p-2 px-3 pr-10 w-full text-base"
                                                         placeholder="Enter current password"
-                                                        required />
-                                                    <button type="button" @click="showPassword.current = !showPassword.current"
-                                                        class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+                                                        required >
+                                                    <button
+type="button" class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600"
+                                                        @click="showPassword.current = !showPassword.current">
+                                                        <Icon :name="showPassword.current ? 'tabler:eye-off' : 'tabler:eye'" size="18" />
                                                     </button>
                                                 </div>
                                             </div>
@@ -181,10 +181,11 @@
                                                         :type="showPassword.new ? 'text' : 'password'"
                                                         class="border border-gray-300 text-gray-900 rounded-lg focus:ring-green-600 focus:border-green-600 block p-2 px-3 pr-10 w-full text-base"
                                                         placeholder="Enter new password"
-                                                        required />
-                                                    <button type="button" @click="showPassword.new = !showPassword.new"
-                                                        class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+                                                        required >
+                                                    <button
+type="button" class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600"
+                                                        @click="showPassword.new = !showPassword.new">
+                                                        <Icon :name="showPassword.new ? 'tabler:eye-off' : 'tabler:eye'" size="18" />
                                                     </button>
                                                 </div>
                                             </div>
@@ -198,16 +199,18 @@
                                                         class="border border-gray-300 text-gray-900 rounded-lg focus:ring-green-600 focus:border-green-600 block p-2 px-3 pr-10 w-full text-base"
                                                         :class="passwordMismatch ? 'border-red-400' : ''"
                                                         placeholder="Confirm new password"
-                                                        required />
-                                                    <button type="button" @click="showPassword.confirm = !showPassword.confirm"
-                                                        class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+                                                        required >
+                                                    <button
+type="button" class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600"
+                                                        @click="showPassword.confirm = !showPassword.confirm">
+                                                        <Icon :name="showPassword.confirm ? 'tabler:eye-off' : 'tabler:eye'" size="18" />
                                                     </button>
                                                 </div>
                                                 <p v-if="passwordMismatch" class="text-xs text-red-500 mt-1.5 font-medium">Passwords do not match</p>
                                             </div>
 
-                                            <button :disabled="authStore.loading || passwordMismatch" type="submit"
+                                            <button
+:disabled="authStore.loading || passwordMismatch" type="submit"
                                                 class="btn inline-flex items-center justify-center gap-x-2 bg-gray-900 text-white border-none disabled:opacity-50 hover:bg-black transition px-6">
                                                 <span v-if="authStore.loading">Updating...</span>
                                                 <span v-else>Update Password</span>
@@ -229,8 +232,8 @@
                 <div class="bg-white rounded-xl shadow-xl w-full max-w-4xl overflow-hidden flex flex-col">
                     <div class="px-6 py-4 border-b flex justify-between items-center bg-gray-50">
                         <h3 class="text-lg font-bold text-gray-800 m-0">Pin Your Location</h3>
-                        <button @click="closeMapModal" class="text-gray-400 hover:text-gray-700">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        <button class="text-gray-400 hover:text-gray-700" @click="closeMapModal">
+                            <Icon name="tabler:x" size="24" />
                         </button>
                     </div>
                     
@@ -241,11 +244,11 @@
                         </div>
                     </div>
 
-                    <div id="location-map" class="w-full h-[400px] z-0"></div>
+                    <div id="location-map" class="w-full h-[400px] z-0"/>
 
                     <div class="px-6 py-4 border-t flex justify-end gap-3 bg-gray-50">
-                        <button @click="closeMapModal" class="px-5 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-100">Cancel</button>
-                        <button @click="confirmLocation" class="px-5 py-2 text-sm font-medium text-white bg-green-600 rounded-lg hover:bg-green-700 shadow-sm">Confirm Location</button>
+                        <button class="px-5 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-100" @click="closeMapModal">Cancel</button>
+                        <button class="px-5 py-2 text-sm font-medium text-white bg-green-600 rounded-lg hover:bg-green-700 shadow-sm" @click="confirmLocation">Confirm Location</button>
                     </div>
                 </div>
             </div>

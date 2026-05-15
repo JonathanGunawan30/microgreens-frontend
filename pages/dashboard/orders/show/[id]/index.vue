@@ -9,13 +9,7 @@
               <li class="inline-block text-green-600">
                 <a href="/dashboard">
                   Dashboard
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="icon icon-tabler icons-tabler-outline icon-tabler-slash inline-block mx-2">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M17 5l-10 14" />
-                  </svg>
+                  <Icon name="tabler:slash" size="14" class="icon icon-tabler icons-tabler-outline icon-tabler-slash inline-block mx-2" />
                 </a>
               </li>
               <li class="inline-block text-gray-500" aria-current="page">
@@ -25,7 +19,8 @@
           </nav>
         </div>
         <div class="mt-4 md:mt-0">
-          <a href="/dashboard/orders"
+          <a
+href="/dashboard/orders"
             class="btn inline-flex items-center gap-x-2 bg-green-600 text-white border-green-600 disabled:opacity-50 disabled:pointer-events-none hover:text-white hover:bg-green-700 hover:border-green-700 active:bg-green-700 active:border-green-700 focus:outline-none focus:ring-4 focus:ring-green-100">
             Back to all orders
           </a>
@@ -44,7 +39,8 @@
             <div class="flex items-center">
               <h3 class="mb-0 mr-3">Order ID: #{{ orderData?.order_code }}</h3>
 
-              <span class="inline-block p-1 text-sm align-baseline leading-none rounded border font-semibold"
+              <span
+class="inline-block p-1 text-sm align-baseline leading-none rounded border font-semibold"
                 :class="[
                   orderData?.status === 'Pending' 
                     ? 'bg-yellow-100 text-yellow-800 border-yellow-200'
@@ -89,9 +85,9 @@
                   <h6>Customer Details</h6>
                   <p class="mb-2 leading-relaxed">
                     {{ orderData?.customer?.customer_name || '-' }}
-                    <br />
+                    <br >
                     {{ orderData?.customer?.customer_email || '-' }}
-                    <br />
+                    <br >
                     {{ orderData?.customer?.customer_phone || '-' }}
                   </p>
                 </div>
@@ -112,12 +108,12 @@
                     <span class="text-gray-800">
                       {{ orderData?.order_code }}
                     </span>
-                    <br />
+                    <br >
                     Order Date:
                     <span class="text-gray-800">
                       {{ formatDate(orderData?.order_date, orderData?.order_time) }}
                     </span>
-                    <br />
+                    <br >
                     Order Total:
                     <span class="text-gray-800">Rp. {{ formatPrice(orderData?.total_amount) }}</span>
                   </p>
@@ -143,8 +139,9 @@
                     <a href="#" class="text-inherit">
                       <div class="flex items-center gap-2 w-full">
                         <div class="flex-0">
-                          <img :src="item.product_image"
-                            alt="" class="h-12 w-12 object-contain rounded bg-gray-100" />
+                          <img
+:src="item.product_image"
+                            alt="" class="h-12 w-12 object-contain rounded bg-gray-100" >
                         </div>
                         <div class="">
                           <h5 class="mb-0 text-base">{{ item.product_name }}</h5>
@@ -157,8 +154,8 @@
                   <td class="py-3 px-6 text-left">Rp. {{ formatPrice(item.product_price * item.quantity) }}</td>
                 </tr>
                 <tr class="border-b border-gray-300">
-                  <td class="pb-0 py-3 px-6 text-left"></td>
-                  <td class="pb-0 py-3 px-6 text-left"></td>
+                  <td class="pb-0 py-3 px-6 text-left"/>
+                  <td class="pb-0 py-3 px-6 text-left"/>
                   <td class="font-medium text-gray-800 py-3 px-6 text-left">
                     Sub Total :
                   </td>
@@ -167,8 +164,8 @@
                   </td>
                 </tr>
                 <tr class="border-b border-gray-300">
-                  <td class="pb-0 py-3 px-6 text-left"></td>
-                  <td class="pb-0 py-3 px-6 text-left"></td>
+                  <td class="pb-0 py-3 px-6 text-left"/>
+                  <td class="pb-0 py-3 px-6 text-left"/>
                   <td class="font-medium text-gray-800 py-3 px-6 text-left">
                     Shipping Cost :
                   </td>
@@ -177,8 +174,8 @@
                   </td>
                 </tr>
                 <tr>
-                  <td class="py-3 px-6 text-left"></td>
-                  <td class="py-3 px-6 text-left"></td>
+                  <td class="py-3 px-6 text-left"/>
+                  <td class="py-3 px-6 text-left"/>
                   <td class="font-bold text-gray-800 py-3 px-6 text-left">
                     Grand Total :
                   </td>
@@ -203,11 +200,12 @@
               <textarea
                 v-model="remarks"
                 class="border border-gray-300 text-gray-900 rounded-lg focus:shadow-[0_0_0_.25rem_rgba(10,173,10,.25)] focus:ring-green-600 focus:ring-0 focus:border-green-600 block p-2 px-3 disabled:opacity-50 disabled:pointer-events-none w-full text-base mb-3"
-                rows="3" placeholder="Write note for order"></textarea>
-              <button @click="handleUpdateStatus(orderData.id)"
-                type="button"
+                rows="3" placeholder="Write note for order"/>
+              <button
+type="button"
                 :disabled="orderStore.loading"
-                class="btn inline-flex items-center gap-x-2 bg-green-600 text-white border-green-600 disabled:opacity-50 disabled:pointer-events-none hover:text-white hover:bg-green-700 hover:border-green-700 active:bg-green-700 active:border-green-700 focus:outline-none focus:ring-4 focus:ring-green-100">
+                class="btn inline-flex items-center gap-x-2 bg-green-600 text-white border-green-600 disabled:opacity-50 disabled:pointer-events-none hover:text-white hover:bg-green-700 hover:border-green-700 active:bg-green-700 active:border-green-700 focus:outline-none focus:ring-4 focus:ring-green-100"
+                @click="handleUpdateStatus(orderData.id)">
                 {{ orderStore.loading ? 'Submitting...' : 'Submit' }}
               </button>
             </div>

@@ -8,47 +8,30 @@
               <ul class="nav flex-col nav-pills nav-pills-dark">
                 <li class="nav-item">
                   <NuxtLink class="nav-link active gap-2" to="/account">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-shopping-bag">
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                      <path d="M6.331 8h11.339a2 2 0 0 1 1.977 2.304l-1.255 8.152a3 3 0 0 1 -2.966 2.544h-6.852a3 3 0 0 1 -2.965 -2.544l-1.255 -8.152a2 2 0 0 1 1.977 -2.304z" />
-                      <path d="M9 11v-5a3 3 0 0 1 6 0v5" />
-                    </svg>
+                    <Icon name="tabler:shopping-bag" size="18" class="icon icon-tabler icons-tabler-outline icon-tabler-shopping-bag" />
                     Your Orders
                   </NuxtLink>
                 </li>
                 <li class="nav-item">
                   <NuxtLink class="nav-link gap-2 justify-between" to="/account/notifications">
                     <div class="flex items-center gap-2">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-bell">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
-                        <path d="M9 17v1a3 3 0 0 0 6 0v-1" />
-                      </svg>
+                      <Icon name="tabler:bell" size="18" class="icon icon-tabler icons-tabler-outline icon-tabler-bell" />
                       Notifications
                     </div>
                   </NuxtLink>
                 </li>
                 <li class="nav-item">
                   <NuxtLink class="nav-link gap-2" to="/account/setting">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-settings">
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                      <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" />
-                      <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
-                    </svg>
+                    <Icon name="tabler:settings" size="18" class="icon icon-tabler icons-tabler-outline icon-tabler-settings" />
                     Settings
                   </NuxtLink>
                 </li>
                 <li class="nav-item">
-                  <hr class="pt-3 mt-5" />
+                  <hr class="pt-3 mt-5" >
                 </li>
                 <li class="nav-item">
                   <button type="button" class="nav-link gap-2" @click="handleLogout">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-logout">
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                      <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
-                      <path d="M9 12h12l-3 -3" />
-                      <path d="M18 15l3 -3" />
-                    </svg>
+                    <Icon name="tabler:logout" size="18" class="icon icon-tabler icons-tabler-outline icon-tabler-logout" />
                     Log out
                   </button>
                 </li>
@@ -61,7 +44,7 @@
               
               <div class="mb-6">
                 <NuxtLink to="/account" class="text-sm text-gray-500 hover:text-green-600 flex items-center mb-3 transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="mr-1" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                  <Icon name="tabler:arrow-left" size="16" class="mr-1" />
                   Back to Orders
                 </NuxtLink>
                 <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -73,12 +56,12 @@
               </div>
 
               <div v-if="loading" class="text-center py-24 bg-gray-50 rounded-xl border border-gray-200">
-                <div class="animate-spin rounded-full h-10 w-10 border-b-2 border-green-600 mx-auto"></div>
+                <Icon name="tabler:loader-2" size="40" class="animate-spin text-green-600 mx-auto" />
                 <p class="text-gray-500 mt-4 text-sm font-medium">Loading your order details...</p>
               </div>
 
               <div v-else-if="error" class="bg-red-50 text-red-600 p-5 rounded-xl border border-red-100 flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="mr-3 shrink-0" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                <Icon name="tabler:alert-circle" size="24" class="mr-3 shrink-0" />
                 <div>
                   <h4 class="font-bold mb-1">Failed to load order</h4>
                   <p class="text-sm">{{ error }}</p>
@@ -130,11 +113,12 @@
                   </div>
                   
                   <div class="p-0">
-                    <div v-for="(item, index) in order.order_detail" :key="index" 
+                    <div
+v-for="(item, index) in order.order_detail" :key="index" 
                          class="flex flex-col sm:flex-row items-start sm:items-center p-6 border-b border-gray-100 last:border-b-0 hover:bg-gray-50 transition-colors">
                       
                       <div class="w-20 h-20 shrink-0 bg-white border border-gray-200 rounded-lg p-2 mr-4 mb-4 sm:mb-0">
-                        <img :src="item.product_image || '/images/placeholder.jpg'" :alt="item.product_name" class="w-full h-full object-contain" />
+                        <img :src="item.product_image || '/images/placeholder.jpg'" :alt="item.product_name" class="w-full h-full object-contain" >
                       </div>
                       
                       <div class="flex-grow">
