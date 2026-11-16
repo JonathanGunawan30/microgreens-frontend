@@ -3,7 +3,7 @@
 export default defineNuxtConfig({
   ssr: false,
   compatibilityDate: '2024-11-01',
-  devtools: { enabled: true },
+  devtools: { enabled: process.env.NODE_ENV === 'development' },
   nitro: {
     preset: 'static',
     watchOptions: {
@@ -27,12 +27,9 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     '@nuxt/icon',
     '@nuxt/image',
-    '@nuxt/ui',
+    '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
   ],
-  colorMode: {
-    preference: 'light'
-  },
   image: {
     provider: 'none'
   },
