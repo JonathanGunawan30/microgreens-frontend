@@ -8,7 +8,7 @@
             <span class="hidden md:inline">|</span>
             <span class="flex items-center gap-1 whitespace-nowrap">
                For testing, use 
-               <a href="https://simulator.sandbox.midtrans.com/" target="_blank" class="text-green-600 hover:text-green-700 font-medium underline flex items-center gap-0.5" title="Open Midtrans Sandbox Simulator">
+               <a href="https://simulator.sandbox.midtrans.com/" target="_blank" rel="noopener noreferrer" class="text-green-600 hover:text-green-700 font-medium underline flex items-center gap-0.5" title="Open Midtrans Sandbox Simulator">
                  Midtrans Simulator
                  <Icon name="tabler:external-link" size="12" />
                </a>
@@ -30,21 +30,11 @@
             </div>
 
             <div class="lg:w-2/5 hidden lg:block">
-              <form @submit.prevent="handleSearch">
-                <div class="relative">
-                  <label for="searchProducts" class="invisible hidden">Search</label>
-                  <input
-                    id="searchProducts"
-                    v-model="searchQuery"
-                    class="border border-gray-300 text-gray-900 rounded-lg focus:shadow-[0_0_0_.25rem_rgba(10,173,10,.25)] focus:ring-green-600 focus:ring-0 focus:border-green-600 block p-2 px-3 disabled:opacity-50 disabled:pointer-events-none w-full text-base"
-                    type="search"
-                    placeholder="Search for products (Press Enter to search or clear)"
-                  >
-                  <button class="absolute right-0 top-0 p-3 text-gray-500 hover:text-green-600" type="submit">
-                    <Icon name="tabler:search" size="16" />
-                  </button>
-                </div>
-              </form>
+              <ProductSearchInput
+                v-model="searchQuery"
+                input-id="searchProducts"
+                @submit="handleSearch"
+              />
             </div>
 
             <div class="lg:w-1/5 text-end md:w-1/2 w-3/5">
@@ -146,6 +136,15 @@ v-if="cartCount > 0"
         </div>
         
         <div class="flex-grow overflow-y-auto p-4">
+          <div class="mb-4">
+            <ProductSearchInput
+              v-model="searchQuery"
+              input-id="searchProductsMobile"
+              @submit="handleSearch(); showMobileMenu = false"
+              @select="showMobileMenu = false"
+            />
+          </div>
+
           <div class="mb-6">
             <h6 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3 px-3">Main Menu</h6>
             <ul class="nav flex-col gap-1">
@@ -230,6 +229,7 @@ v-if="cartCount > 0"
 import { ref, computed, onMounted, watch } from 'vue'
 import CartSidebar from '../modals/CartSidebar.vue'
 import LoginModal from '../modals/LoginModal.vue'
+import ProductSearchInput from './ProductSearchInput.vue'
 import { useAuthStore } from '~/stores/auth'
 import { useCategoryStore } from '~/stores/category'
 import { useCartStore } from '~/stores/cart'

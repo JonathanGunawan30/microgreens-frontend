@@ -1,48 +1,6 @@
 import { defineStore } from 'pinia'
-
-const compressAndConvertToWebP = (file, maxWidth = 800, quality = 0.8) => {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader()
-    reader.readAsDataURL(file)
-    
-    reader.onload = (event) => {
-      const img = new Image()
-      img.src = event.target.result
-      
-      img.onload = () => {
-        const canvas = document.createElement('canvas')
-        let width = img.width
-        let height = img.height
-
-        if (width > maxWidth) {
-          height = Math.round((height * maxWidth) / width)
-          width = maxWidth
-        }
-
-        canvas.width = width
-        canvas.height = height
-        
-        const ctx = canvas.getContext('2d')
-        ctx.drawImage(img, 0, 0, width, height)
-
-        canvas.toBlob((blob) => {
-          if (!blob) {
-            reject(new Error('Failed to process image'))
-            return
-          }
-          const fileName = file.name.replace(/\.[^/.]+$/, "") + ".webp"
-          const newFile = new File([blob], fileName, {
-            type: 'image/webp',
-            lastModified: Date.now(),
-          })
-          resolve(newFile)
-        }, 'image/webp', quality)
-      }
-      img.onerror = (error) => reject(error)
-    }
-    reader.onerror = (error) => reject(error)
-  })
-}
+import { apiFetch } from '~/utils/api'
+import { compressAndConvertToWebP } from '~/utils/image'
 
 export const useProductStore = defineStore('products', {
     state: () => ({
@@ -65,8 +23,8 @@ export const useProductStore = defineStore('products', {
           this.loading = true
           this.error = null
   
-          const response = await fetch(`${useRuntimeConfig().public.apiProductBaseUrl}/products/featured`, {
-            headers: { 'Content-Type': 'application/json' }
+          const response = await apiFetch(`${useRuntimeConfig().public.apiProductBaseUrl}/products/featured`, {
+            auth: false,
           })
   
           if (!response.ok) {
@@ -105,8 +63,8 @@ export const useProductStore = defineStore('products', {
         if (startPrice !== undefined && startPrice !== '') query.append('startPrice', startPrice)
         if (endPrice !== undefined && endPrice !== '') query.append('endPrice', endPrice)
 
-        const response = await fetch(`${useRuntimeConfig().public.apiProductBaseUrl}/products?${query.toString()}`, {
-          headers: { 'Content-Type': 'application/json' }
+        const response = await apiFetch(`${useRuntimeConfig().public.apiProductBaseUrl}/products?${query.toString()}`, {
+          auth: false,
         })
 
         if (!response.ok) {
@@ -128,13 +86,40 @@ export const useProductStore = defineStore('products', {
       }
     },
 
+      async fetchProductSuggestions(keyword, limit = 5, signal) {
+        const trimmed = (keyword || '').trim()
+        if (trimmed.length < 2) {
+          return []
+        }
+
+        const query = new URLSearchParams({
+          q: trimmed,
+          limit: String(limit),
+        })
+
+        const response = await apiFetch(
+          `${useRuntimeConfig().public.apiProductBaseUrl}/products/suggest?${query.toString()}`,
+          {
+            auth: false,
+            signal,
+          }
+        )
+
+        if (!response.ok) {
+          return []
+        }
+
+        const result = await response.json()
+        return Array.isArray(result.data) ? result.data : []
+      },
+
       async fetchProductDetailHome(productId) {
         try {
           this.loading = true
           this.error = null
   
-          const response = await fetch(`${useRuntimeConfig().public.apiProductBaseUrl}/products/${productId}`, {
-            headers: { 'Content-Type': 'application/json' }
+          const response = await apiFetch(`${useRuntimeConfig().public.apiProductBaseUrl}/products/${productId}`, {
+            auth: false,
           })
   
           if (!response.ok) {
@@ -171,12 +156,7 @@ export const useProductStore = defineStore('products', {
           
           if (isParent) query.append('is_parent', isParent)
   
-          const response = await fetch(`${useRuntimeConfig().public.apiProductBaseUrl}/admin/products?${query.toString()}`, {
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${useCookie('token').value}`
-            }
-          })
+          const response = await apiFetch(`${useRuntimeConfig().public.apiProductBaseUrl}/admin/products?${query.toString()}`)
   
           if (!response.ok) {
             const errorResult = await response.json().catch(() => ({}))
@@ -202,12 +182,8 @@ export const useProductStore = defineStore('products', {
           this.loading = true
           this.error = null
   
-          const response = await fetch(`${useRuntimeConfig().public.apiProductBaseUrl}/admin/products`, {
+          const response = await apiFetch(`${useRuntimeConfig().public.apiProductBaseUrl}/admin/products`, {
             method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${useCookie('token').value}`
-            },
             body: JSON.stringify(formData)
           })
   
@@ -233,11 +209,7 @@ export const useProductStore = defineStore('products', {
           this.loading = true
           this.error = null
           
-          const response = await fetch(`${useRuntimeConfig().public.apiProductBaseUrl}/admin/products/${id}`, {
-            headers: {
-              'Authorization': `Bearer ${useCookie('token').value}`
-            }
-          })
+          const response = await apiFetch(`${useRuntimeConfig().public.apiProductBaseUrl}/admin/products/${id}`)
       
           if (!response.ok) {
             const errorResult = await response.json().catch(() => ({}))
@@ -261,12 +233,8 @@ export const useProductStore = defineStore('products', {
           this.loading = true
           this.error = null
           
-          const response = await fetch(`${useRuntimeConfig().public.apiProductBaseUrl}/admin/products/${id}`, {
+          const response = await apiFetch(`${useRuntimeConfig().public.apiProductBaseUrl}/admin/products/${id}`, {
             method: 'PUT',
-            headers: {
-              'Authorization': `Bearer ${useCookie('token').value}`,
-              'Content-Type': 'application/json'
-            },
             body: JSON.stringify(data)
           })
     
@@ -291,12 +259,8 @@ export const useProductStore = defineStore('products', {
           this.loading = true
           this.error = null
   
-          const response = await fetch(`${useRuntimeConfig().public.apiProductBaseUrl}/admin/products/${productId}`, {
+          const response = await apiFetch(`${useRuntimeConfig().public.apiProductBaseUrl}/admin/products/${productId}`, {
             method: 'DELETE',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${useCookie('token').value}`
-            }
           })
   
           const result = await response.json()
@@ -331,11 +295,8 @@ export const useProductStore = defineStore('products', {
           const formData = new FormData()
           formData.append('image', processedFile) 
 
-          const response = await fetch(`${useRuntimeConfig().public.apiProductBaseUrl}/admin/image-upload`, {
+          const response = await apiFetch(`${useRuntimeConfig().public.apiProductBaseUrl}/admin/image-upload`, {
             method: 'POST',
-            headers: {
-              'Authorization': `Bearer ${useCookie('token').value}`,
-            },
             body: formData
           })
 
@@ -372,11 +333,8 @@ export const useProductStore = defineStore('products', {
           const formData = new FormData()
           formData.append('image', processedFile) 
 
-          const response = await fetch(`${useRuntimeConfig().public.apiProductBaseUrl}/auth/image-upload`, {
+          const response = await apiFetch(`${useRuntimeConfig().public.apiProductBaseUrl}/auth/image-upload`, {
             method: 'POST',
-            headers: {
-              'Authorization': `Bearer ${useCookie('token').value}`,
-            },
             body: formData
           })
 
@@ -407,12 +365,8 @@ export const useProductStore = defineStore('products', {
           this.loading = true
           this.error = null
 
-          const response = await fetch(`${useRuntimeConfig().public.apiProductBaseUrl}/admin/image`, {
+          const response = await apiFetch(`${useRuntimeConfig().public.apiProductBaseUrl}/admin/image`, {
             method: 'DELETE',
-            headers: {
-              'Authorization': `Bearer ${useCookie('token').value}`,
-              'Content-Type': 'application/json'
-            },
             body: JSON.stringify({ image_url: imageUrl }) 
           })
 
@@ -440,12 +394,8 @@ export const useProductStore = defineStore('products', {
           this.loading = true
           this.error = null
 
-          const response = await fetch(`${useRuntimeConfig().public.apiProductBaseUrl}/auth/image`, {
+          const response = await apiFetch(`${useRuntimeConfig().public.apiProductBaseUrl}/auth/image`, {
             method: 'DELETE',
-            headers: {
-              'Authorization': `Bearer ${useCookie('token').value}`,
-              'Content-Type': 'application/json'
-            },
             body: JSON.stringify({ image_url: imageUrl }) 
           })
 
