@@ -19,6 +19,7 @@ export default defineNuxtConfig({
       apiPaymentBaseUrl: process.env.NUXT_PUBLIC_PAYMENT_API_BASE_URL || process.env.NUXT_PAYMENT_API_BASE_URL,
       apiNotificationBaseUrl: process.env.NUXT_PUBLIC_NOTIFICATION_API_BASE_URL || process.env.NUXT_NOTIFICATION_API_BASE_URL,
       midtransClientKey: process.env.NUXT_PUBLIC_MIDTRANS_CLIENT_KEY,
+      maptilerApiKey: process.env.NUXT_PUBLIC_MAPTILER_API_KEY,
     }
   },
 
