@@ -56,7 +56,8 @@ export default defineNuxtConfig({
       title: 'MicroGreens',
       meta: [
         { charset: 'utf-8' },
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: 'referrer', content: 'strict-origin-when-cross-origin' }
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/images/favicon/favicon.ico' },
