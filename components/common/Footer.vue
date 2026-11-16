@@ -77,7 +77,7 @@ v-for="(section, index) in footerSections" :key="index"
             <div class="md:w-1/2">
               <span class="text-sm text-gray-500">
                 © {{ new Date().getFullYear() }} FreshCart TailwindCSS eCommerce HTML Template. 
-                Powered by <a href="https://codescandy.com/" target="_blank" class="text-green-600">Codescandy</a>.
+                Powered by <a href="https://codescandy.com/" target="_blank" rel="noopener noreferrer" class="text-green-600">Codescandy</a>.
               </span>
             </div>
             <div class="md:w-1/2 flex md:justify-end items-center">

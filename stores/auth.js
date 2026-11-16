@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { apiFetch, getAuthCookieOptions } from '~/utils/api'
 
 export const useAuthStore = defineStore('auth', {
     state: () => ({
@@ -14,11 +15,9 @@ export const useAuthStore = defineStore('auth', {
                 this.loading = true
                 this.error = null
 
-                const response = await fetch(`${useRuntimeConfig().public.apiUserBaseUrl}/signin`, {
+                const response = await apiFetch(`${useRuntimeConfig().public.apiUserBaseUrl}/signin`, {
+                    auth: false,
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
                     body: JSON.stringify({ email, password })
                 })
 
@@ -33,10 +32,11 @@ export const useAuthStore = defineStore('auth', {
                 }
                 this.token = data.data.access_token
 
-                const tokenCookie = useCookie('token')
+                const cookieOpts = getAuthCookieOptions()
+                const tokenCookie = useCookie('token', cookieOpts)
                 tokenCookie.value = this.token
 
-                const userCookie = useCookie('user')
+                const userCookie = useCookie('user', cookieOpts)
                 userCookie.value = JSON.stringify(this.user)
 
                 return data
@@ -53,8 +53,9 @@ export const useAuthStore = defineStore('auth', {
         },
         
         checkAuth() {
-            const tokenCookie = useCookie('token')
-            const userCookie = useCookie('user')
+            const cookieOpts = getAuthCookieOptions()
+            const tokenCookie = useCookie('token', cookieOpts)
+            const userCookie = useCookie('user', cookieOpts)
             if (tokenCookie.value && userCookie.value) {
                 this.token = tokenCookie.value
                 this.user = userCookie.value 
@@ -66,11 +67,9 @@ export const useAuthStore = defineStore('auth', {
                 this.loading = true
                 this.error = null
                 
-                const response = await fetch(`${useRuntimeConfig().public.apiUserBaseUrl}/signup`, {
+                const response = await apiFetch(`${useRuntimeConfig().public.apiUserBaseUrl}/signup`, {
+                    auth: false,
                     method: 'POST',
-                    headers: {
-                    'Content-Type': 'application/json'
-                    },
                     body: JSON.stringify(userData)
                 })
                 
@@ -94,11 +93,9 @@ export const useAuthStore = defineStore('auth', {
                 this.loading = true
                 this.error = null
 
-                const response = await fetch(`${useRuntimeConfig().public.apiUserBaseUrl}/forgot-password`, {
+                const response = await apiFetch(`${useRuntimeConfig().public.apiUserBaseUrl}/forgot-password`, {
+                    auth: false,
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
                     body: JSON.stringify({ email })
                 })
 
@@ -121,11 +118,9 @@ export const useAuthStore = defineStore('auth', {
                 this.loading = true
                 this.error = null
 
-                const response = await fetch(`${useRuntimeConfig().public.apiUserBaseUrl}/verify-account?token=${token}`, {
+                const response = await apiFetch(`${useRuntimeConfig().public.apiUserBaseUrl}/verify-account?token=${encodeURIComponent(token)}`, {
+                    auth: false,
                     method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
                 })
 
                 const data = await response.json()
@@ -141,10 +136,11 @@ export const useAuthStore = defineStore('auth', {
                 }
                 this.token = userData.token || userData.access_token 
 
-                const tokenCookie = useCookie('token')
+                const cookieOpts = getAuthCookieOptions()
+                const tokenCookie = useCookie('token', cookieOpts)
                 tokenCookie.value = this.token
 
-                const userCookie = useCookie('user')
+                const userCookie = useCookie('user', cookieOpts)
                 userCookie.value = JSON.stringify(this.user)
 
                 return data
@@ -161,11 +157,9 @@ export const useAuthStore = defineStore('auth', {
                 this.loading = true
                 this.error = null
 
-                const response = await fetch(`${useRuntimeConfig().public.apiUserBaseUrl}/update-password`, {
+                const response = await apiFetch(`${useRuntimeConfig().public.apiUserBaseUrl}/update-password`, {
+                    auth: false,
                     method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
                     body: JSON.stringify({password_new, password_confirmation, token})
                 })
 
@@ -187,12 +181,7 @@ export const useAuthStore = defineStore('auth', {
             try {
                 this.loading = true
         
-                const response = await fetch(`${useRuntimeConfig().public.apiUserBaseUrl}/auth/profile`, {
-                    headers: {
-                        'Authorization': `Bearer ${useCookie('token').value}`,
-                        'Content-Type': 'application/json'
-                    }
-                })
+                const response = await apiFetch(`${useRuntimeConfig().public.apiUserBaseUrl}/auth/profile`)
         
                 const result = await response.json()
                 
@@ -217,12 +206,8 @@ export const useAuthStore = defineStore('auth', {
                 this.loading = true
                 this.error = null
 
-                const response = await fetch(`${useRuntimeConfig().public.apiUserBaseUrl}/auth/profile`, {
+                const response = await apiFetch(`${useRuntimeConfig().public.apiUserBaseUrl}/auth/profile`, {
                     method: 'PUT',
-                    headers: {
-                        'Authorization': `Bearer ${useCookie('token').value}`,
-                        'Content-Type': 'application/json'
-                    },
                     body: JSON.stringify(userData)
                 })
                 const data = await response.json()
@@ -244,12 +229,8 @@ export const useAuthStore = defineStore('auth', {
                 this.loading = true
                 this.error = null
 
-                const response = await fetch(`${useRuntimeConfig().public.apiUserBaseUrl}/auth/profile/password`, {
+                const response = await apiFetch(`${useRuntimeConfig().public.apiUserBaseUrl}/auth/profile/password`, {
                     method: 'PATCH',
-                    headers: {
-                        'Authorization': `Bearer ${useCookie('token').value}`,
-                        'Content-Type': 'application/json'
-                    },
                     body: JSON.stringify(passwordData)
                 })
 
@@ -270,24 +251,21 @@ export const useAuthStore = defineStore('auth', {
         },
 
         async logout() {
+            const cookieOpts = getAuthCookieOptions()
             try {
                 this.loading = true;
-                const currentToken = useCookie('token').value;
+                const currentToken = useCookie('token', cookieOpts).value;
                 if (currentToken) {
-                    await fetch(`${useRuntimeConfig().public.apiUserBaseUrl}/auth/logout`, {
+                    await apiFetch(`${useRuntimeConfig().public.apiUserBaseUrl}/auth/logout`, {
                         method: 'POST',
-                        headers: {
-                            'Authorization': `Bearer ${currentToken}`,
-                            'Content-Type': 'application/json'
-                        }
                     }).catch(e => console.warn('Logout API failed:', e));
                 }
             } finally {
                 this.user = null
                 this.token = null
-                const tokenCookie = useCookie('token')
+                const tokenCookie = useCookie('token', cookieOpts)
                 tokenCookie.value = null
-                const userCookie = useCookie('user')
+                const userCookie = useCookie('user', cookieOpts)
                 userCookie.value = null
                 this.loading = false;
             }

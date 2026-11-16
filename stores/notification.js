@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { apiFetch } from '~/utils/api'
 
 export const useNotificationStore = defineStore('notification', {
   state: () => ({
@@ -12,17 +13,13 @@ export const useNotificationStore = defineStore('notification', {
       this.loading = true
       try {
         const config = useRuntimeConfig()
-        const token = useCookie('token').value
-
-        const response = await $fetch(`${config.public.apiNotificationBaseUrl}/auth/notifications`, {
-          headers: {
-            'Authorization': `Bearer ${token}`
+        const res = await apiFetch(`${config.public.apiNotificationBaseUrl}/auth/notifications`)
+        if (res.ok) {
+          const response = await res.json()
+          if (response && response.data) {
+            this.notifications = response.data
+            this.unreadCount = this.notifications.filter(n => !n.read_at).length
           }
-        })
-
-        if (response && response.data) {
-          this.notifications = response.data
-          this.unreadCount = this.notifications.filter(n => !n.read_at).length
         }
       } catch (error) {
         console.error('Failed to fetch notifications:', error)
@@ -34,14 +31,10 @@ export const useNotificationStore = defineStore('notification', {
     async markAsRead(id) {
       try {
         const config = useRuntimeConfig()
-        const token = useCookie('token').value
-
-        await $fetch(`${config.public.apiNotificationBaseUrl}/auth/notifications/${id}/read`, {
+        const res = await apiFetch(`${config.public.apiNotificationBaseUrl}/auth/notifications/${id}/read`, {
           method: 'PATCH',
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
         })
+        if (!res.ok) return
 
         const notif = this.notifications.find(n => n.id === id)
         if (notif && !notif.read_at) {
@@ -56,14 +49,10 @@ export const useNotificationStore = defineStore('notification', {
     async markAllAsRead() {
       try {
         const config = useRuntimeConfig()
-        const token = useCookie('token').value
-
-        await $fetch(`${config.public.apiNotificationBaseUrl}/auth/notifications/read-all`, {
+        const res = await apiFetch(`${config.public.apiNotificationBaseUrl}/auth/notifications/read-all`, {
           method: 'PATCH',
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
         })
+        if (!res.ok) return
 
         const now = new Date().toISOString()
         this.notifications = this.notifications.map(n => ({
