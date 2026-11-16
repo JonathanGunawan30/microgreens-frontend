@@ -26,7 +26,6 @@ onMounted(() => {
   }
   
   const userId = userObj?.id || userObj?.user_id || useCookie('user_id').value;
-  console.log('Attempting WS connection from Default layout with user ID:', userId);
   
   if (userId) {
     connectWs(userId);

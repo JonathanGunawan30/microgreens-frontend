@@ -20,12 +20,9 @@ onMounted(() => {
   }
 
   const userId = userObj?.id || userObj?.user_id || useCookie('user_id').value;
-  console.log('Attempting WS connection with user ID:', userId);
 
   if (userId) {
     connectWs(userId);
-  } else {
-    console.warn('Cannot connect to WS: user ID is missing.');
   }
 })
 
@@ -52,7 +49,6 @@ watch(() => route.path, () => {
         <div class="p-6">
           <slot />
         </div>
-        <UNotifications />
       </main>
     </div>
   </div>

@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { apiFetch } from '~/utils/api'
 
 export const usePaymentStore = defineStore('payment', {
   state: () => ({
@@ -20,12 +21,8 @@ export const usePaymentStore = defineStore('payment', {
         this.loading = true
         this.error = null
 
-        const response = await fetch(`${useRuntimeConfig().public.apiPaymentBaseUrl}/auth/payments`, {
+        const response = await apiFetch(`${useRuntimeConfig().public.apiPaymentBaseUrl}/auth/payments`, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${useCookie('token').value}`
-          },
           body: JSON.stringify(payload)
         })
         
@@ -52,13 +49,7 @@ export const usePaymentStore = defineStore('payment', {
         if (limit) query.append('limit', limit) 
 
         const endpoint = isAdmin ? `/admin/payments` : `/auth/payments`
-        const response = await fetch(`${useRuntimeConfig().public.apiPaymentBaseUrl}${endpoint}?${query.toString()}`, {
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${useCookie('token').value}`,
-            'Content-Type': 'application/json'
-          }
-        })
+        const response = await apiFetch(`${useRuntimeConfig().public.apiPaymentBaseUrl}${endpoint}?${query.toString()}`)
 
         const result = await response.json()
         if (!response.ok) throw new Error(result.message || 'Failed to fetch payments')
@@ -81,13 +72,7 @@ export const usePaymentStore = defineStore('payment', {
         this.error = null
 
         const endpoint = isAdmin ? `/admin/payments/${paymentId}` : `/auth/payments/${paymentId}`
-        const response = await fetch(`${useRuntimeConfig().public.apiPaymentBaseUrl}${endpoint}`, {
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${useCookie('token').value}`,
-            'Content-Type': 'application/json'
-          }
-        })
+        const response = await apiFetch(`${useRuntimeConfig().public.apiPaymentBaseUrl}${endpoint}`)
 
         const result = await response.json()
         if (!response.ok) throw new Error(result.message || 'Failed to fetch payment detail')

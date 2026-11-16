@@ -1,51 +1,5 @@
 import { defineStore } from 'pinia'
-
-const compressAndConvertToWebP = (file, maxWidth = 800, quality = 0.8) => {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader()
-    reader.readAsDataURL(file)
-    
-    reader.onload = (event) => {
-      const img = new Image()
-      img.src = event.target.result
-      
-      img.onload = () => {
-        const canvas = document.createElement('canvas')
-        let width = img.width
-        let height = img.height
-
-        if (width > maxWidth) {
-          height = Math.round((height * maxWidth) / width)
-          width = maxWidth
-        }
-
-        canvas.width = width
-        canvas.height = height
-        
-        const ctx = canvas.getContext('2d')
-        ctx.drawImage(img, 0, 0, width, height)
-
-        canvas.toBlob((blob) => {
-          if (!blob) {
-            reject(new Error('Failed to compress image'))
-            return
-          }
-          
-          const fileName = file.name.replace(/\.[^/.]+$/, "") + ".webp"
-          
-          const newFile = new File([blob], fileName, {
-            type: 'image/webp',
-            lastModified: Date.now(),
-          })
-          
-          resolve(newFile)
-        }, 'image/webp', quality)
-      }
-      img.onerror = (error) => reject(error)
-    }
-    reader.onerror = (error) => reject(error)
-  })
-}
+import { compressAndConvertToWebP } from '~/utils/image'
 
 export const useCategoryStore = defineStore('categories', {
     state: () => ({

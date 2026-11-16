@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { apiFetch } from '~/utils/api'
 
 export const useRoleStore = defineStore('roles', {
     state: () => ({
@@ -13,12 +14,7 @@ export const useRoleStore = defineStore('roles', {
             try {
                 this.loading = true
 
-                const response = await fetch(`${useRuntimeConfig().public.apiUserBaseUrl}/admin/roles`, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${useCookie('token').value}`
-                }
-                })
+                const response = await apiFetch(`${useRuntimeConfig().public.apiUserBaseUrl}/admin/roles`)
 
                 if (!response.ok) {
                 const errData = await response.json()
@@ -41,12 +37,7 @@ export const useRoleStore = defineStore('roles', {
             try {
             this.loading = true
     
-            const response = await fetch(`${useRuntimeConfig().public.apiUserBaseUrl}/admin/roles/${roleID}`, {
-                headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${useCookie('token').value}`
-                }
-            })
+            const response = await apiFetch(`${useRuntimeConfig().public.apiUserBaseUrl}/admin/roles/${roleID}`)
     
             const result = await response.json()
             
@@ -66,12 +57,8 @@ export const useRoleStore = defineStore('roles', {
             try {
             this.loading = true
     
-            const response = await fetch(`${useRuntimeConfig().public.apiUserBaseUrl}/admin/roles`, {
+            const response = await apiFetch(`${useRuntimeConfig().public.apiUserBaseUrl}/admin/roles`, {
                 method: 'POST',
-                headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${useCookie('token').value}`
-                },
                 body: JSON.stringify({
                     name: name
                 })
