@@ -453,10 +453,8 @@ const openMapModal = () => {
 
         mapInstance.value = window.L.map('location-map').setView([tempLocation.value.lat, tempLocation.value.lng], 16)
 
-        window.L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-            maxZoom: 19
-        }).addTo(mapInstance.value)
+        const tileConfig = getLeafletTileConfig(useRuntimeConfig().public.maptilerApiKey)
+        window.L.tileLayer(tileConfig.url, tileConfig.options).addTo(mapInstance.value)
 
         mapMarker.value = window.L.marker([tempLocation.value.lat, tempLocation.value.lng], { 
             draggable: true 
